@@ -11,7 +11,7 @@ Paper: *ScamWorld: An Interactive Environment for Evaluating Web Agents Against 
 
 <p align="center"><img src="assets/overview.jpg" width="100%" alt="ScamWorld overview: 16 fraud scenarios, 38 fraud mechanisms, example websites and the observation and action interfaces"></p>
 
-If you like the figures, refer to [scamworld.pptx](assets/scamworld.pptx).
+If you like the figures, refer to [scamworld.pptx](scamworld.pptx).
 
 ## Example tasks
 
