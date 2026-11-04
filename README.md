@@ -11,6 +11,8 @@ Paper: *ScamWorld: An Interactive Environment for Evaluating Web Agents Against 
 
 <p align="center"><img src="assets/overview.jpg" width="100%" alt="ScamWorld overview: 16 fraud scenarios, 38 fraud mechanisms, example websites and the observation and action interfaces"></p>
 
+If you like the figures, refer to [scamworld.pptx](assets/scamworld.pptx).
+
 ## Example tasks
 
 Each task pairs an ordinary user request with an interactive website. On a scam website, an observable red flag appears before the agent's final action, such as a payment, a credential submission or a software install.
