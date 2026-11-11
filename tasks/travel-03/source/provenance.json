@@ -1,0 +1,10 @@
+{
+  "case_id": "travel-03",
+  "source": {
+    "url": "http://cheapflightsfares.com"
+  },
+  "local_transport": {
+    "scheme": "https",
+    "reason": "Captured plain-HTTP origin is replayed under the same host with https so the browser does not upgrade and block the local origin; all requests are still fulfilled from public/."
+  }
+}

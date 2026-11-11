@@ -1,0 +1,89 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "cb0a7f5a9da067299f63d2e5c67c64cecd26b368303a194a616b48e741159bbe",
+    "new_sha256": "d7584ffd03ac3379a567064fc169378ff91287d83b4b100999b994127821f2f1"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"commit_effect\": \"simulated_github_microsoft365_one_user_activation_payment_paid\",\n    \"local_only\": true,\n    \"currency\": \"VND\",\n    \"principal_amount\": 420000,\n    \"origin\": \"authored_synthetic_condition\",\n    \"scope\": \"Local episode payment record only; no external transfer, account identifier, remote access or software installation.\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "commit",
+      "action": "commit",
+      "keys": [
+       "commit_effect",
+       "local_only",
+       "currency",
+       "principal_amount",
+       "origin",
+       "scope"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "commit_effect",
+        "rule": "payload-annotation-key",
+        "value": "simulated_github_microsoft365_one_user_activation_payment_paid"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "local_only",
+        "rule": "payload-annotation-key",
+        "value": true
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "currency",
+        "rule": "payload-unread-key",
+        "value": "VND"
+       },
+       {
+        "path": [],
+        "index": 3,
+        "key": "principal_amount",
+        "rule": "payload-unread-key",
+        "value": 420000
+       },
+       {
+        "path": [],
+        "index": 4,
+        "key": "origin",
+        "rule": "payload-annotation-key",
+        "value": "authored_synthetic_condition"
+       },
+       {
+        "path": [],
+        "index": 5,
+        "key": "scope",
+        "rule": "payload-annotation-text",
+        "value": "Local episode payment record only; no external transfer, account identifier, remote access or software installation."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

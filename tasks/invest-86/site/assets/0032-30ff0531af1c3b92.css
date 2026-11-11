@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.MuiSvgIcon-root { fill: currentcolor; width: 1em; height: 1em; display: inline-block; font-size: 1.5rem; transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1); flex-shrink: 0; user-select: none; }
+
+.MuiSvgIcon-colorPrimary { color: rgb(63, 81, 181); }
+
+.MuiSvgIcon-colorSecondary { color: rgb(245, 0, 87); }
+
+.MuiSvgIcon-colorAction { color: rgba(0, 0, 0, 0.54); }
+
+.MuiSvgIcon-colorError { color: rgb(244, 67, 54); }
+
+.MuiSvgIcon-colorDisabled { color: rgba(0, 0, 0, 0.26); }
+
+.MuiSvgIcon-fontSizeInherit { font-size: inherit; }
+
+.MuiSvgIcon-fontSizeSmall { font-size: 1.25rem; }
+
+.MuiSvgIcon-fontSizeLarge { font-size: 2.1875rem; }

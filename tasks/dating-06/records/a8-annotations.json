@@ -1,0 +1,89 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "0201a4fc815c45338531312867f388ce32f9416d959e5cbe733e38cf00f7f863",
+    "new_sha256": "47b86d7e7935ed341f267fe07e4d8f5a205ac46fe3a7423fd1e588dca04d223b"
+   },
+   {
+    "kind": "cut",
+    "where": "before",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": "\"payload\": {\n    \"commit_effect\": \"simulated_treesholes_login_30day_messaging_personal_charge_no_activation_paid\",\n    \"local_only\": true,\n    \"currency\": \"TWD\",\n    \"principal_amount\": 299,\n    \"origin\": \"authored_synthetic_condition\",\n    \"scope\": \"Local episode payment record only; no external transfer, account identifier, remote access or software installation.\"\n   },\n   ",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "commit",
+      "action": "commit",
+      "keys": [
+       "commit_effect",
+       "local_only",
+       "currency",
+       "principal_amount",
+       "origin",
+       "scope"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "commit_effect",
+        "rule": "payload-annotation-key",
+        "value": "simulated_treesholes_login_30day_messaging_personal_charge_no_activation_paid"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "local_only",
+        "rule": "payload-annotation-key",
+        "value": true
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "currency",
+        "rule": "payload-unread-key",
+        "value": "TWD"
+       },
+       {
+        "path": [],
+        "index": 3,
+        "key": "principal_amount",
+        "rule": "payload-unread-key",
+        "value": 299
+       },
+       {
+        "path": [],
+        "index": 4,
+        "key": "origin",
+        "rule": "payload-annotation-key",
+        "value": "authored_synthetic_condition"
+       },
+       {
+        "path": [],
+        "index": 5,
+        "key": "scope",
+        "rule": "payload-annotation-text",
+        "value": "Local episode payment record only; no external transfer, account identifier, remote access or software installation."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

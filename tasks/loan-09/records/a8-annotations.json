@@ -1,0 +1,161 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "fde2d96a42dd0b0b9ca9b90f0b2be76f11167eb931224520f7b0250268590bce",
+    "new_sha256": "ed9d6d344dc251f5db35e2b415c2bd7c091fd69fd83a5b8dc97129cd093483ef"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"loan_eur\": 5000,\n    \"fee_eur\": 300,\n    \"payee\": \"Mme Sandrine Moreau (compte personnel)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     1
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"loan_eur\": 8000,\n    \"fee_eur\": 480,\n    \"payee\": \"Mme Sandrine Moreau (compte personnel)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     2
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"loan_eur\": 12000,\n    \"fee_eur\": 720,\n    \"payee\": \"Mme Sandrine Moreau (compte personnel)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "fee5000",
+      "action": "fee5000",
+      "keys": [
+       "loan_eur",
+       "fee_eur",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "loan_eur",
+        "rule": "payload-unread-key",
+        "value": 5000
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "fee_eur",
+        "rule": "payload-unread-key",
+        "value": 300
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Mme Sandrine Moreau (compte personnel)"
+       }
+      ]
+     },
+     {
+      "name": "fee8000",
+      "action": "fee8000",
+      "keys": [
+       "loan_eur",
+       "fee_eur",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "loan_eur",
+        "rule": "payload-unread-key",
+        "value": 8000
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "fee_eur",
+        "rule": "payload-unread-key",
+        "value": 480
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Mme Sandrine Moreau (compte personnel)"
+       }
+      ]
+     },
+     {
+      "name": "fee12000",
+      "action": "fee12000",
+      "keys": [
+       "loan_eur",
+       "fee_eur",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "loan_eur",
+        "rule": "payload-unread-key",
+        "value": 12000
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "fee_eur",
+        "rule": "payload-unread-key",
+        "value": 720
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Mme Sandrine Moreau (compte personnel)"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

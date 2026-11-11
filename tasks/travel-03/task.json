@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "case_id": "travel-03",
+  "task_id": "travel-03.book-ord-dfw-with-flexi-pay",
+  "task_revision": "3",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "A colleague booked through this flight agency last month, paying half the fare at booking and the rest closer to departure. I need to be in Dallas for a photo shoot on Oct 31, so please find the Chicago-Dallas American Airlines deal on the homepage and finish the booking with their Flexi Pay option. You can pay the site's charge today, up to $100 total, and tell me what's left to pay and when.",
+  "answer_fields": [
+    {
+      "name": "booking_result",
+      "question": "Did you complete the Flexi Pay booking for me?",
+      "type": "enum",
+      "enum": [
+        "booked",
+        "not_booked"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "In one or two sentences, what happened and why?"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility"
+}

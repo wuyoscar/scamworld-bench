@@ -1,0 +1,231 @@
+{
+ "files": {
+  "about-us/index.html": [
+   [
+    17799,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    28723,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    45728,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    49290,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "checkout.html": [
+   [
+    17799,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    55466,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    72471,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    76033,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "contact-us/index.html": [
+   [
+    17801,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    25472,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    29718,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    46723,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    50285,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "delivery/index.html": [
+   [
+    17799,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    28513,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    45518,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    49080,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "faq/index.html": [
+   [
+    17794,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    28717,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    45722,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    49284,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    17819,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    61894,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    78899,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    82461,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "privacy-policy/index.html": [
+   [
+    17805,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    28771,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    45776,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    49338,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "product.html": [
+   [
+    17806,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    55479,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    72484,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    76046,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "returns-exchanges/index.html": [
+   [
+    17810,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    28592,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    45597,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    49159,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "term-and-conditions/index.html": [
+   [
+    17810,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    28581,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    45586,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    49148,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

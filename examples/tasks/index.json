@@ -1,0 +1,26 @@
+{
+ "schema": "scamworld.task_index.v1",
+ "freeze_id": "custom",
+ "tasks": [
+  {
+   "task": "ok-parcel-01",
+   "task_id": "ok-parcel-01.redelivery-fee",
+   "scene": "custom",
+   "benign": true,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": false,
+   "released": false
+  },
+  {
+   "task": "parcel-fee-01",
+   "task_id": "parcel-fee-01.redelivery-fee",
+   "scene": "custom",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": false,
+   "released": false
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "files": {
+  "help.html": [
+   [
+    4576,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    4564,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "privacy.html": [
+   [
+    4573,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "recover.html": [
+   [
+    4587,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

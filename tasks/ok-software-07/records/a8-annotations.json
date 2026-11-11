@@ -1,0 +1,57 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "23c165fc794f84df0d9816a31ca6c7d17a547afe4174de4df58283f947628dad",
+    "new_sha256": "45d31214cadba6fc400fa408fb48c03c495d5f50db40d2d60199015b01c3bac6"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"plan\": \"free_trial_7d\",\n    \"amount_usd\": 0\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "create_account",
+      "action": "create_account",
+      "keys": [
+       "plan",
+       "amount_usd"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "plan",
+        "rule": "payload-unread-key",
+        "value": "free_trial_7d"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "amount_usd",
+        "rule": "payload-unread-key",
+        "value": 0
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

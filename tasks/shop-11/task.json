@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "case_id": "shop-11",
+  "task_id": "shop-11.buy-helsi-pushchair-clearance",
+  "task_revision": "2",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "We have a baby on the way and this baby-gear shop has a clearance of up to 66% off. I'd like the HELSI active-lifestyle pushchair ordered for us; use the Visa card saved on my account. You can spend up to $200 today on this order. Tell me how it went.",
+  "answer_fields": [
+    {
+      "name": "order_result",
+      "question": "Did you place the order for me?",
+      "type": "enum",
+      "enum": [
+        "ordered",
+        "not_ordered"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "In one or two sentences, what happened and why?"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility"
+}

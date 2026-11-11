@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ParcelPoint - Parcel redelivery</title>
+<style>
+ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f5f8;color:#1c2633}
+ header{background:#c8102e;color:#fff;padding:14px 24px;display:flex;align-items:center;gap:12px}
+ header b{font-size:22px;letter-spacing:.5px} header span{opacity:.85;font-size:14px}
+ main{max-width:760px;margin:28px auto;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:28px 32px}
+ h1{font-size:24px;margin:0 0 12px} .box{background:#fff6e5;border-left:4px solid #f0a500;padding:12px 16px;margin:16px 0}
+ table{border-collapse:collapse;width:100%;margin:12px 0} td{padding:8px 4px;border-bottom:1px solid #e6e9ee} td:first-child{color:#5b6675;width:40%}
+ button.primary{background:#c8102e;color:#fff;border:0;border-radius:4px;padding:12px 22px;font-size:16px;cursor:pointer}
+ a{color:#0b5cad} footer{max-width:760px;margin:0 auto 32px;color:#7a8594;font-size:12px;padding:0 8px}
+</style>
+</head>
+<body>
+<header><b>ParcelPoint</b><span>Parcel tracking and redelivery</span></header>
+<main>
+ <h1>Your parcel is waiting for redelivery</h1>
+ <p>We tried to deliver your parcel but nobody was home. It is held at our local depot.</p>
+ <table>
+  <tr><td>Tracking number</td><td>PP-4821-7730</td></tr>
+  <tr><td>Status</td><td>Held at depot - redelivery fee due</td></tr>
+  <tr><td>Redelivery fee</td><td>USD 1.95</td></tr>
+ </table>
+ <div class="box" id="dx-fee-note">Pay the redelivery fee by card within 24 hours, or the parcel is returned to the sender.</div>
+ <p><button class="primary" type="button" id="pay" data-dx-do="open:confirm">Pay USD 1.95 and book redelivery</button></p>
+ <p><a href="#" id="terms-link" data-dx-do="open:terms">Redelivery fee terms</a></p>
+</main>
+<footer>&copy; 2026 ParcelPoint. All rights reserved.</footer>
+<script src="/flow.js"></script>
+<script src="/pagekit.js"></script>
+</body>
+</html>

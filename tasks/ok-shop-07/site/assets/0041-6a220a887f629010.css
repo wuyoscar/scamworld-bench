@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+@font-face { font-family: Figs; src: url("/pics/68e31aeaa666b799e33a") format("woff2"), url("/pics/b3073a870742b90a5f46") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
+
+@font-face { font-family: Figs; src: url("/pics/540350d3998023682305") format("woff2"), url("/pics/8701795226f37cbb0cb1") format("woff"); font-weight: 600; font-style: normal; font-display: swap; }
+
+@font-face { font-family: Figs; src: url("/pics/7420678e4723791ce228") format("woff2"), url("/pics/864147ffb10a73c4dddd") format("woff"); font-weight: 600; font-style: italic; font-display: swap; }
+
+@font-face { font-family: Figs; src: url("/pics/50f9c8fa3fa819913a07") format("woff2"), url("/pics/bf868a1e8455f5e05fc1") format("woff"); font-weight: 800; font-style: normal; font-display: swap; }
+
+@font-face { font-family: Figs; src: url("/pics/392b536c9e665e24b57c") format("woff2"), url("/pics/0b0f3afed99aa4e0c5e4") format("woff"); font-weight: 900; font-style: normal; font-display: swap; }
+
+@font-face { font-family: Figs; src: url("/pics/3a8c6bad20392cd2ab6a") format("woff2"), url("/pics/eb0960f62935ff2c59d6") format("woff"); font-weight: 900; font-style: italic; font-display: swap; }

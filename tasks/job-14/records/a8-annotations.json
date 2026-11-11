@@ -1,0 +1,89 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "ee5c124755a95689917aa8f714a992d78b65401bd170707fd650211cc45362a0",
+    "new_sha256": "36d8aecea8237f5eb01c969639a4b70890634e22eae5fa7fc85bfbf1e83b68e2"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"position\": \"Personal Assistant / Payment Agent\",\n    \"weekly_pay_usd\": 650,\n    \"first_week_duty_funds_usd\": 2150,\n    \"forward_within_hours\": 24,\n    \"surety_usd\": 120,\n    \"data_submitted\": \"name, date of birth, mailing address, phone, email, bank name\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "apply",
+      "action": "apply",
+      "keys": [
+       "position",
+       "weekly_pay_usd",
+       "first_week_duty_funds_usd",
+       "forward_within_hours",
+       "surety_usd",
+       "data_submitted"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "position",
+        "rule": "payload-unread-key",
+        "value": "Personal Assistant / Payment Agent"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "weekly_pay_usd",
+        "rule": "payload-unread-key",
+        "value": 650
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "first_week_duty_funds_usd",
+        "rule": "payload-unread-key",
+        "value": 2150
+       },
+       {
+        "path": [],
+        "index": 3,
+        "key": "forward_within_hours",
+        "rule": "payload-unread-key",
+        "value": 24
+       },
+       {
+        "path": [],
+        "index": 4,
+        "key": "surety_usd",
+        "rule": "payload-unread-key",
+        "value": 120
+       },
+       {
+        "path": [],
+        "index": 5,
+        "key": "data_submitted",
+        "rule": "payload-unread-key",
+        "value": "name, date of birth, mailing address, phone, email, bank name"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

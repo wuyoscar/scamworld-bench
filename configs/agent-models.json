@@ -1,0 +1,275 @@
+{
+ "schema": "scamworld.agent_models.v1",
+ "note": "Agent backbone request settings per reasoning profile. The episode uses SCAMWORLD_REASONING_PROFILE (experiment option reasoning_profile), default 'r8'. 'extra' is merged into the gateway request body; 'reasoning' is the OpenRouter reasoning field; 'max_tokens' is the per-call output cap.",
+ "default_profile": "r8",
+ "profiles": {
+  "r8": {
+   "default": {
+    "max_tokens": 16384,
+    "reasoning": {
+     "effort": "medium"
+    }
+   },
+   "models": {
+    "google/gemma-4-31b-it": {
+     "reasoning": {
+      "enabled": false
+     },
+     "max_tokens": 2500
+    },
+    "cz/Kimi-K3": {
+     "extra": {
+      "reasoning_effort": "medium"
+     },
+     "max_tokens": 32768
+    },
+    "deepseek/deepseek-v4.1-flash-1017": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 8192,
+     "stop": [
+      "<system>",
+      "\nObservation:"
+     ],
+     "provider": {
+      "order": [
+       "together"
+      ],
+      "allow_fallbacks": false
+     }
+    },
+    "qwen/qwen3.8-flash": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 32768,
+     "provider": {
+      "order": [
+       "alibaba"
+      ],
+      "allow_fallbacks": false
+     }
+    },
+    "cz/DeepSeek-V4.1-Flash-xyge": {
+     "extra": {
+      "reasoning_effort": "medium"
+     },
+     "max_tokens": 32768
+    },
+    "cz/DeepSeek-V4.1-Flash-1017": {
+     "extra": {
+      "reasoning_effort": "medium"
+     },
+     "max_tokens": 32768
+    },
+    "cz/Qwen3.6-35B-A3B": {
+     "extra": {
+      "chat_template_kwargs": {
+       "enable_thinking": true
+      }
+     },
+     "max_tokens": 32768
+    },
+    "cz/Nex-N2.5-mini": {
+     "extra": {
+      "reasoning_effort": "medium"
+     },
+     "max_tokens": 32768
+    },
+    "anthropic/claude-haiku-5.5": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 16384,
+     "provider": {
+      "order": [
+       "anthropic"
+      ],
+      "allow_fallbacks": false
+     }
+    },
+    "openai/gpt-5.6-luna": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 16384,
+     "provider": {
+      "order": [
+       "openai"
+      ],
+      "allow_fallbacks": false
+     }
+    },
+    "google/gemini-3.8-flash": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 16384,
+     "provider": {
+      "order": [
+       "google-ai-studio",
+       "google-vertex"
+      ],
+      "allow_fallbacks": false
+     }
+    },
+    "openai:gpt-5.6-luna": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 16384
+    },
+    "anthropic:claude-haiku-5-5": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 16384
+    },
+    "google:gemini-3.8-flash": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 16384
+    },
+    "moonshotai/kimi-k3": {
+     "reasoning": {
+      "effort": "medium"
+     },
+     "max_tokens": 32768,
+     "provider": {
+      "order": [
+       "moonshotai"
+      ],
+      "allow_fallbacks": false
+     }
+    }
+   },
+   "note": "Default profile: every backbone at its default implementation, with reasoning effort medium where the model offers it, and a larger per-call output cap than r7."
+  },
+  "r7": {
+   "default": {
+    "max_tokens": 2500,
+    "reasoning": {
+     "effort": "low"
+    }
+   },
+   "models": {
+    "google/gemma-4-31b-it": {
+     "reasoning": {
+      "enabled": false
+     }
+    },
+    "cz/Kimi-K3": {
+     "extra": {
+      "chat_template_kwargs": {
+       "thinking": false
+      }
+     }
+    },
+    "cz/DeepSeek-V4.1-Flash-xyge": {
+     "extra": {}
+    },
+    "cz/DeepSeek-V4.1-Flash-1017": {
+     "extra": {}
+    },
+    "cz/Qwen3.6-35B-A3B": {
+     "extra": {
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     }
+    },
+    "cz/Nex-N2.5-mini": {
+     "extra": {}
+    }
+   }
+  }
+ },
+ "prices": {
+  "note": "Reference prices (USD per million tokens) of each paid agent backbone: for an OpenRouter id the highest standard-tier price among the endpoints its provider pin allows, for a direct-API id (vendor:model) the highest tier on the vendor's pricing page. No code reads them. The per-episode cap is a flat 5 USD for every model (the default of --max-cost; scamworld exp run always uses it); at these prices it covers 1.5 times a 60-step episode estimated at 40k input tokens for the first call, 300 more for each later step, and 2k output tokens a call for every backbone except moonshotai/kimi-k3 (about 10.6 USD by that estimate; the paper's Kimi-K3 episodes cost under 1 USD at these prices in 99% of cases). OpenRouter, or the vendor of a direct-API id, bills the actual cost.",
+  "google/gemma-4-31b-it": {
+   "prompt": "0.1",
+   "completion": "0.34",
+   "endpoints": [
+    "coreweave/fp4"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints (coreweave/fp4, retrieved 2026-10-21)"
+  },
+  "deepseek/deepseek-v4.1-flash-1017": {
+   "prompt": "0.3",
+   "completion": "1.2",
+   "endpoints": [
+    "together"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints"
+  },
+  "qwen/qwen3.8-flash": {
+   "prompt": "0.15",
+   "completion": "0.47",
+   "endpoints": [
+    "alibaba",
+    "alibaba/us-east-1"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints"
+  },
+  "anthropic/claude-haiku-5.5": {
+   "prompt": "0.1",
+   "completion": "0.5",
+   "endpoints": [
+    "anthropic"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints"
+  },
+  "openai/gpt-5.6-luna": {
+   "prompt": "0.2",
+   "completion": "1.2",
+   "endpoints": [
+    "openai"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints"
+  },
+  "google/gemini-3.8-flash": {
+   "prompt": "0.825",
+   "completion": "4.125",
+   "endpoints": [
+    "google-ai-studio",
+    "google-vertex/global",
+    "google-vertex/us"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints"
+  },
+  "openai:gpt-5.6-luna": {
+   "prompt": "0.4",
+   "completion": "1.8",
+   "endpoints": [
+    "openai (direct API)"
+   ],
+   "source": "configs/direct-prices.json (vendor pricing page, retrieved 2026-10-24): the highest tier of the entry, as a reference price only; the direct ledger bills the real tier"
+  },
+  "anthropic:claude-haiku-5-5": {
+   "prompt": "0.5",
+   "completion": "2.5",
+   "endpoints": [
+    "anthropic (direct API)"
+   ],
+   "source": "configs/direct-prices.json (vendor pricing page, retrieved 2026-10-24): the highest tier of the entry, as a reference price only; the direct ledger bills the real tier"
+  },
+  "google:gemini-3.8-flash": {
+   "prompt": "0.75",
+   "completion": "3.75",
+   "endpoints": [
+    "google (direct API)"
+   ],
+   "source": "configs/direct-prices.json (vendor pricing page, retrieved 2026-10-24): the highest tier of the entry, as a reference price only; the direct ledger bills the real tier; price through 2026-12-31 (doubles on 2027-01-01, after which a conservative 60-step estimate of 40k input tokens a call exceeds the 5 USD cap)"
+  },
+  "moonshotai/kimi-k3": {
+   "prompt": "3",
+   "completion": "15",
+   "endpoints": [
+    "moonshotai"
+   ],
+   "source": "OpenRouter /api/v1/models/<id>/endpoints (Moonshot AI moonshotai/mxfp4, retrieved 2026-10-24)"
+  }
+ }
+}

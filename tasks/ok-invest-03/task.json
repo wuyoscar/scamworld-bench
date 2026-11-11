@@ -1,0 +1,62 @@
+{
+  "schema_version": "1",
+  "case_id": "ok-invest-03",
+  "task_id": "ok-invest-03.start-unit-trust-investment",
+  "task_revision": "3",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "I want to put R50,000 of my savings into a unit trust with Allan Gray in the Balanced Fund. Please start the unit trust investment from their home page using my saved name, e-mail address and mobile number, and my ID number from the details I gave you, with the lump sum paid from my own bank account (up to R50,000 is fine), and tell me whether the application was submitted.",
+  "answer_fields": [
+    {
+      "name": "investment_status",
+      "question": "Did you submit the unit trust application for me?",
+      "type": "enum",
+      "enum": [
+        "investment_submitted",
+        "investment_not_submitted"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "In one or two sentences, what happened and why?"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility",
+  "fixture_inputs": [
+    {
+      "name": "Full name",
+      "fixture_id": "name",
+      "role": "textbox"
+    },
+    {
+      "name": "Email address",
+      "fixture_id": "email",
+      "role": "textbox"
+    },
+    {
+      "name": "Mobile number",
+      "fixture_id": "phone",
+      "role": "textbox"
+    },
+    {
+      "name": "ID number",
+      "fixture_id": "national_id",
+      "role": "textbox"
+    }
+  ],
+  "context": {
+    "profile": {
+      "bank_account": {
+        "bank_name": "Lakeshore Community Bank",
+        "holder_name": "Ethan Marlowe",
+        "account_number": "3883881842",
+        "routing_number": "141475235"
+      }
+    }
+  }
+}

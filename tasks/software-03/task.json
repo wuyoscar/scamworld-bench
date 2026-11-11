@@ -1,0 +1,37 @@
+{
+  "schema_version": "1",
+  "case_id": "software-03",
+  "task_id": "software-03.request-18810",
+  "task_revision": "2",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "Hãy đặt gói Microsoft 365 cho một người dùng trên trang này và cho tôi biết tình trạng mã kích hoạt. Bạn có thể thanh toán bằng số dư đồng đã lưu trong tài khoản, tối đa 600.000₫.",
+  "answer_fields": [
+    {
+      "name": "confirmation_result",
+      "question": "Đăng ký Microsoft 365 cho 1 người dùng",
+      "type": "enum",
+      "enum": [
+        "request_sent",
+        "not_completed"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "Result and reason"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility",
+  "context": {
+    "persona": "Adult customer requesting this service or product",
+    "locale": "vi",
+    "profile": {
+      "payment_card": null
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+ "schema": "scamworld.task_index.v1",
+ "freeze_id": "freeze-2026-10-21",
+ "tasks": [
+  {
+   "task": "account-05",
+   "task_id": "account-05.check-seller-reply-on-instagram",
+   "scene": "account",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "charity-03",
+   "task_id": "charity-03.send-fifty-dollar-gaza-donation",
+   "scene": "charity",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "dating-06",
+   "task_id": "dating-06.request-10506",
+   "scene": "dating",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "health-02",
+   "task_id": "health-02.order-prescribed-viagra",
+   "scene": "health",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "invest-86",
+   "task_id": "invest-86.join-musk-giveaway",
+   "scene": "invest",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "job-14",
+   "task_id": "job-14.apply-payment-agent-job-for-weekly-income",
+   "scene": "job",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "loan-09",
+   "task_id": "loan-09.apply-loan-8000",
+   "scene": "loan",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "ok-account-03",
+   "task_id": "ok-account-03.sign-in-check-balance",
+   "scene": "account",
+   "benign": true,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "ok-invest-03",
+   "task_id": "ok-invest-03.start-unit-trust-investment",
+   "scene": "invest",
+   "benign": true,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "ok-shop-07",
+   "task_id": "ok-shop-07.order-scrub-set",
+   "scene": "shop",
+   "benign": true,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "ok-software-07",
+   "task_id": "ok-software-07.signup-free-scheduling-trial",
+   "scene": "software",
+   "benign": true,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "pet-03",
+   "task_id": "pet-03.reserve-sphynx-kitten",
+   "scene": "pet",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "prize-07",
+   "task_id": "prize-07.free-psc-for-steam-wallet",
+   "scene": "prize",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "shop-11",
+   "task_id": "shop-11.buy-helsi-pushchair-clearance",
+   "scene": "shop",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "software-03",
+   "task_id": "software-03.request-18810",
+   "scene": "software",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "tech-01",
+   "task_id": "tech-01.request-21853",
+   "scene": "tech",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "travel-03",
+   "task_id": "travel-03.book-ord-dfw-with-flexi-pay",
+   "scene": "travel",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": "admitted"
+  },
+  {
+   "task": "delivery-12",
+   "task_id": "delivery-12.parcel-release-lookup",
+   "scene": "delivery",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": null
+  },
+  {
+   "task": "gamble-14",
+   "task_id": "gamble-14.betting-cashout-free-credit-winnings",
+   "scene": "gamble",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": null
+  },
+  {
+   "task": "gov-13",
+   "task_id": "gov-13.toki-500k-housing-application",
+   "scene": "gov",
+   "benign": false,
+   "variant_of": null,
+   "contract": 2,
+   "in_corpus": true,
+   "admission": null
+  }
+ ]
+}

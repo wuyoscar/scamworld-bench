@@ -1,0 +1,32 @@
+{
+ "files": {
+  "betaling.html": [
+   [
+    141937,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    142067,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    145856,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "sporing.html": [
+   [
+    141922,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

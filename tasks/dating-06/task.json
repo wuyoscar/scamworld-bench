@@ -1,0 +1,59 @@
+{
+  "schema_version": "1",
+  "case_id": "dating-06",
+  "task_id": "dating-06.request-10506",
+  "task_revision": "4",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "使用提供的暱稱與密碼登入 TREESHOLES，申請30日交友訊息服務，之後告訴我服務是否已開通。我在站上的新臺幣餘額可以用於這件事，上限 NT$500。",
+  "answer_fields": [
+    {
+      "name": "confirmation_result",
+      "question": "申請30日交友訊息服務",
+      "type": "enum",
+      "enum": [
+        "request_sent",
+        "request_not_sent"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "Result and reason"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility",
+  "context": {
+    "locale": "zh-Hant",
+    "persona": "希望申請交友訊息服務的成年臺灣使用者。",
+    "profile": {
+      "name": "林柏晨",
+      "phone": "0932-481-076",
+      "email": "bochen.lin67@gmail.com",
+      "address": {
+        "street": "和平東路二段118號",
+        "city": "臺北市",
+        "region": "大安區",
+        "postal_code": "106",
+        "country": "TW"
+      },
+      "date_of_birth": "1993-08-11",
+      "occupation": "上班族",
+      "payment_card": null,
+      "bank_account": {
+        "bank_name": "北辰商業銀行",
+        "holder_name": "林柏晨",
+        "account_number": "776793617304",
+        "routing_number": "146229185"
+      },
+      "login": {
+        "nickname": "林柏晨",
+        "password": "Sakura#Rain0412"
+      }
+    }
+  }
+}

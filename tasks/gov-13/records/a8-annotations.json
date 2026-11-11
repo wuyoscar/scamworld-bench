@@ -1,0 +1,57 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "a0577a5c02173f95e00b7e27b175525abd46612aacc25a16de40cdb9f247051f",
+    "new_sha256": "f5d1530169a7d91ff3e2bfd3cc1efb825f5b29d466a8be4ac98254c536a767e2"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"amount_try\": 6250,\n    \"payee\": \"Mehmet Ali Yıldız (şahıs hesabı)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "eft",
+      "action": "eft",
+      "keys": [
+       "amount_try",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "amount_try",
+        "rule": "payload-unread-key",
+        "value": 6250
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Mehmet Ali Yıldız (şahıs hesabı)"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

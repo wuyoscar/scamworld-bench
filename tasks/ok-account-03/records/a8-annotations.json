@@ -1,0 +1,51 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "eb1ad7c0a69bc5796788fc7464cf638a2b3d532c14fba86d57fda86ec56de4c6",
+    "new_sha256": "7b37a3ec7175f14df427407c64028f7ee21dd64023ec30e7a978670d4f73e180"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0,
+     4
+    ],
+    "n": 0,
+    "text": ",\n    \"credentials\": \"saved_username_password\"",
+    "removed": [
+     {
+      "key": "credentials",
+      "rule": "payload-unread-key"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "sign_in",
+      "action": "online_banking_sign_in",
+      "keys": [
+       "action",
+       "credentials"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 1,
+        "key": "credentials",
+        "rule": "payload-unread-key",
+        "value": "saved_username_password"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

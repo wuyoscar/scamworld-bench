@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.css-stivtw { width: 100%; height: 100%; position: absolute; bottom: 0px; right: 0px; top: 0px; display: flex; -webkit-box-pack: end; justify-content: flex-end; align-items: flex-end; }
+
+.css-14dz7n .wrapper { color: white; width: auto; background-image: linear-gradient(80deg, rgb(18, 51, 223), rgb(74, 132, 215)); }
+
+.css-14dz7n .wrapper:hover { cursor: pointer; background-image: linear-gradient(80deg, rgb(16, 45, 200), rgb(66, 118, 193)); }
+
+.css-14dz7n .fab { background-image: linear-gradient(80deg, rgb(18, 51, 223), rgb(74, 132, 215)); color: white !important; }
+
+.css-14dz7n .fab:hover { background-image: linear-gradient(80deg, rgb(16, 45, 200), rgb(66, 118, 193)); }
+
+.css-8pu8lo { will-change: transform; height: 47px !important; width: 47px !important; background: rgba(255, 255, 255, 0.1) !important; animation: 350ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s 1 normal none running animation-upigsp !important; box-shadow: none !important; }
+
+@-webkit-keyframes animation-upigsp { 
+  0% { transform: scale(0.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes animation-upigsp { 
+  0% { transform: scale(0.2); }
+  100% { transform: scale(1); }
+}

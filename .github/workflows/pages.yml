@@ -1,0 +1,36 @@
+# Publishes the trajectory site (https://wuyoscar.github.io/scamworld-bench/), run by hand. The site archive
+# `trajectory-site.tar.gz` is attached to the given release only for the deployment, so the screenshots never enter the
+# repository history.
+name: Trajectory site
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Release tag that carries trajectory-site.tar.gz
+        required: true
+        default: v1.1.0
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Download the site archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "${{ inputs.release }}" --repo "$GITHUB_REPOSITORY" --pattern trajectory-site.tar.gz
+          mkdir site && tar -xzf trajectory-site.tar.gz -C site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

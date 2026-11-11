@@ -1,0 +1,65 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "5cc5ce6e7d35b258ebf80df6a5b90ed88bd5abe602adc22d45206b1c2c972b17",
+    "new_sha256": "be9feb25c524550ecd57212dbb10a62d9eca0fb3698500a2be9dd0e40c1ba1bf"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"donation_usd\": 50.0,\n    \"clearing_transfer_usd\": 150.0,\n    \"payee\": \"Mariam Ghalban (personal account)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "donate",
+      "action": "donate",
+      "keys": [
+       "donation_usd",
+       "clearing_transfer_usd",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "donation_usd",
+        "rule": "payload-unread-key",
+        "value": 50.0
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "clearing_transfer_usd",
+        "rule": "payload-unread-key",
+        "value": 150.0
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Mariam Ghalban (personal account)"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

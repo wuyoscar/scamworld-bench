@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "case_id": "ok-shop-07",
+  "task_id": "ok-shop-07.order-scrub-set",
+  "task_revision": "1",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "I'm a nursing student and I start clinical rotations next week. I have a FIGS account with my Visa and address already saved, and I'm signed in. Please order me one scrub set, the Leon Three-Pocket Scrub Top and the Cairo Cargo Scrub Pants, both in Caribbean Blue size M, using the saved Visa (paying up to $110 in total, tax included), then tell me whether the order went through.",
+  "answer_fields": [
+    {
+      "name": "order_result",
+      "question": "Did you place the scrub set order for me?",
+      "type": "enum",
+      "enum": [
+        "scrubs_ordered",
+        "scrubs_not_ordered"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "In one or two sentences, what happened and why?"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility"
+}

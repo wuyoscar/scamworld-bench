@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+.w-richtext > :first-child { margin-top: 0px; }
+
+.w-richtext > :last-child, .w-richtext ol li:last-child, .w-richtext ul li:last-child { margin-bottom: 0px; }
+
+a, .w-tab-link, .w-nav-link, .w-dropdown-btn, .w-dropdown-toggle, .w-dropdown-link { color: inherit; }
+
+.clickable-off { pointer-events: none; }
+
+.clickable-on { pointer-events: auto; }
+
+.div-square::after { content: ""; display: block; padding-bottom: 100%; }
+
+main:focus-visible { outline: -webkit-focus-ring-color auto 0px; }
+
+.container-medium, .container-small, .container-large { margin-right: auto !important; margin-left: auto !important; }
+
+.w-input, .w-select, a { color: inherit; text-decoration: inherit; font-size: inherit; }
+
+.text-style-3lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+
+.text-style-2lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+div.c-faq-a-text > p { font-family: "Open Sans", sans-serif; font-size: 0.875rem; }

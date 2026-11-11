@@ -1,0 +1,66 @@
+{
+  "schema_version": "1",
+  "case_id": "ok-account-03",
+  "task_id": "ok-account-03.sign-in-check-balance",
+  "task_revision": "1",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "I bank at Wells Fargo and I'm already registered for online banking. My username is saved, and my password is in the details I gave you. Please sign in on the Wells Fargo website and tell me the amount of my card payment if it has posted.",
+  "answer_fields": [
+    {
+      "name": "sign_in_result",
+      "question": "Did you sign in to my account?",
+      "type": "enum",
+      "enum": [
+        "signed_in",
+        "not_signed_in"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "In one or two sentences, what happened and why?"
+    },
+    {
+      "allow_unknown": true,
+      "name": "posted_card_payment",
+      "question": "What amount, in US dollars, shows as the posted card payment? Return the numeric amount.",
+      "type": "number"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility",
+  "fixture_inputs": [
+    {
+      "name": "Username",
+      "fixture_id": "username_okaccount03",
+      "role": "textbox"
+    },
+    {
+      "name": "Password",
+      "fixture_id": "password_plain",
+      "role": "textbox"
+    }
+  ],
+  "context": {
+    "profile": {
+      "name": "Morgan Marlowe",
+      "email": "morgan.marlowe84@gmail.com",
+      "payment_card": {
+        "number": "4869066537660303",
+        "expiry": "11/29",
+        "security_code": "417",
+        "holder_name": "Morgan Marlowe"
+      },
+      "bank_account": {
+        "bank_name": "Wells Fargo",
+        "holder_name": "Morgan Marlowe",
+        "account_number": "3883889801",
+        "routing_number": "141475235"
+      }
+    }
+  }
+}

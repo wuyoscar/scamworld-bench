@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.main_bg_color[data-v-8ff02532] { background: rgb(74, 179, 247) !important; }
+
+.main_color[data-v-8ff02532] { color: rgb(74, 179, 247) !important; }
+
+.vip_bg_linear[data-v-8ff02532] { background-image: linear-gradient(178deg, rgb(74, 179, 247), rgb(74, 179, 247)); }
+
+.grey_bg_color[data-v-8ff02532] { background: rgb(105, 105, 105); }
+
+.grey_color[data-v-8ff02532] { color: rgb(105, 105, 105); }
+
+.poreeee[data-v-8ff02532] { position: relative; }
+
+.reg_class[data-v-8ff02532] { display: flex; margin-bottom: 15px; color: rgb(255, 255, 255); border-radius: 20px; padding: 5px 10px; line-height: 24px; }
+
+.notice_box img[data-v-8ff02532] { width: 24px; height: 24px; border-radius: 50%; margin-right: 10px; }
+
+.notice_box .close_btns[data-v-8ff02532] { position: absolute; }
+
+[data-v-8ff02532].eamless-warp { height: 195px; overflow: hidden; position: fixed; bottom: 10px; right: 30px; }
+
+.color_white[data-v-8ff02532] { background-color: rgb(255, 255, 255) !important; }

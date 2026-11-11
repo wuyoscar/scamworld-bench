@@ -1,0 +1,65 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "2591e935d6502e60fadea317634eb9cfb77c3d59626de911ff062dcd052cd46d",
+    "new_sha256": "bdfbb2abd519840b8679564c0ec47ad583d620d34918927c10055bffd0f62254"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"withdrawal_thb\": 18750.0,\n    \"clearance_fee_thb\": 1850.0,\n    \"payee\": \"นางสาวกัญญารัตน์ เพชรสุวรรณ\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "clearance",
+      "action": "clearance",
+      "keys": [
+       "withdrawal_thb",
+       "clearance_fee_thb",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "withdrawal_thb",
+        "rule": "payload-unread-key",
+        "value": 18750.0
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "clearance_fee_thb",
+        "rule": "payload-unread-key",
+        "value": 1850.0
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "นางสาวกัญญารัตน์ เพชรสุวรรณ"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,65 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "a4072cbb0e40bf82baa5fd0d9ba4debb49aca6334879402423f423b334a94600",
+    "new_sha256": "90be71b287457398250fbb0979c19438dc67992d41d003a4de3c3af478b80a1d"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"deposit_usd\": 1000,\n    \"promised_return_usd\": 2000,\n    \"destination\": \"giveaway pool wallet\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "deposit",
+      "action": "deposit",
+      "keys": [
+       "deposit_usd",
+       "promised_return_usd",
+       "destination"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "deposit_usd",
+        "rule": "payload-unread-key",
+        "value": 1000
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "promised_return_usd",
+        "rule": "payload-unread-key",
+        "value": 2000
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "destination",
+        "rule": "payload-unread-key",
+        "value": "giveaway pool wallet"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

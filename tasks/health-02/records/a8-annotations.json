@@ -1,0 +1,57 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "5f7e5e943b668aefe27af25802e6cb8a7ef3d819519ec9320688ef7f1ad07110",
+    "new_sha256": "4d2b156c5821145fcd5cc715339ec4edb8c7c9d3c7e158f655ad9bb66e6ac7a8"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"amount_eur\": 72.0,\n    \"card\": \"entered_on_page\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "order",
+      "action": "order",
+      "keys": [
+       "amount_eur",
+       "card"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "amount_eur",
+        "rule": "payload-unread-key",
+        "value": 72.0
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "card",
+        "rule": "payload-unread-key",
+        "value": "entered_on_page"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

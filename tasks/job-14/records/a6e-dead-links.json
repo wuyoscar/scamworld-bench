@@ -1,0 +1,39 @@
+{
+ "files": {
+  "about-us/index.html": [
+   [
+    60966,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "duties.html": [
+   [
+    60477,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    63316,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    78989,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "rules.html": [
+   [
+    60484,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

@@ -1,0 +1,30 @@
+{
+ "schema": "scamworld.direct_prices.v1",
+ "note": "USD per million tokens of the vendors' own APIs (agents/direct.py; models 'openai:<id>', 'anthropic:<id>', 'google:<id>'). One place for the direct price table. Cost of a call = prompt tokens x input + completion tokens x output (completion = answer + reasoning/thinking tokens, all billed as output; Gemini thoughtsTokenCount is added to candidatesTokenCount); image tokens are part of the prompt tokens and bill at the input price (OpenAI and Anthropic fold them into the prompt count; Gemini reports them separately under promptTokensDetails, still inside promptTokenCount). 'tiers': the whole request bills at the tier price when the prompt is over above_prompt_tokens. 'changes': a price that takes effect on a date (UTC). 'cached_input': price of OpenAI's automatic prompt-cache hits (usage.prompt_tokens_details.cached_tokens); where it is absent every prompt token bills at the input price, an upper bound. Reservations in the direct ledger use the highest price of an entry over the whole context window plus max_tokens of output. 'defaults': a model without its own entry bills at the vendor default, deliberately high (the vendor's top standard-tier text price seen on its pricing page); the step then records price_basis 'vendor_default' in its budget receipt, so add an entry before a real run.",
+ "retrieved": "2026-10-24",
+ "models": {
+  "openai:gpt-5.6-luna": {
+   "input": 0.2, "cached_input": 0.02, "output": 1.2,
+   "tiers": [{"above_prompt_tokens": 272000, "input": 0.4, "cached_input": 0.04, "output": 1.8}],
+   "context_tokens": 1050000,
+   "source": "https://developers.openai.com/api/docs/pricing, Standard tier, retrieved 2026-10-24; equals the OpenRouter ledger price (configs/agent-models.json prices openai/gpt-5.6-luna 0.2/1.2)"
+  },
+  "anthropic:claude-haiku-5-5": {
+   "input": 0.1, "output": 0.5,
+   "tiers": [{"above_prompt_tokens": 100000, "input": 0.5, "output": 2.5}],
+   "context_tokens": 1000000,
+   "source": "https://platform.claude.com/docs/en/about-claude/pricing, 'Claude Haiku 5.5 (for prompts up to / over 100,000 tokens)', retrieved 2026-10-24; equals the OpenRouter ledger price (anthropic/claude-haiku-5.5 0.1/0.5)"
+  },
+  "google:gemini-3.8-flash": {
+   "input": 0.75, "output": 3.75,
+   "changes": [{"from": "2027-01-01", "input": 1.5, "output": 7.5}],
+   "context_tokens": 1048576,
+   "source": "https://ai.google.dev/gemini-api/docs/pricing, Standard paid tier (output includes thinking), retrieved 2026-10-24: 0.75/3.75 through 2026-12-31, 1.50/7.50 from 2027-01-01. The OpenRouter ledger price (0.825/4.125) is the highest endpoint, Vertex; the direct Gemini API is cheaper."
+  }
+ },
+ "defaults": {
+  "openai": {"input": 5.0, "output": 30.0, "context_tokens": 400000, "source": "gpt-5.5 standard short-context price on the OpenAI pricing page, 2026-10-24 (a high, conservative stand-in; o1-pro-style specials not covered)"},
+  "anthropic": {"input": 10.0, "output": 50.0, "context_tokens": 200000, "source": "Claude Fable 5.1 on the Anthropic pricing page, 2026-10-24 (the highest standard price)"},
+  "google": {"input": 4.0, "output": 18.0, "context_tokens": 1048576, "source": "Gemini 3.1 Pro Preview over 200k tokens on the Gemini pricing page, 2026-10-24 (the highest standard text price)"}
+ }
+}

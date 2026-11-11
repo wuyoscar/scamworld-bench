@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+@import url("/assets/0020-e353cbfdb200b15d.css");
+
+@font-face { font-family: forma-djr-display; src: url("/pics/ece25f806b656c94b0e5") format("woff2"), url("/pics/15b3b002ccb9d0ee27cd") format("woff"), url("/pics/49fe25c053e5ab37369e") format("opentype"); font-display: auto; font-style: normal; font-weight: 700; font-stretch: normal; }
+
+@font-face { font-family: forma-djr-display; src: url("/pics/4387b2fcf35228bd9a43") format("woff2"), url("/pics/68cb5de79e5a363bfaa1") format("woff"), url("/pics/0b6f52c13b53a4b26a23") format("opentype"); font-display: auto; font-style: italic; font-weight: 800; font-stretch: normal; }
+
+@font-face { font-family: forma-djr-text; src: url("/pics/113142e20f25dd0142de") format("woff2"), url("/pics/2213b96c7fcf62c593fc") format("woff"), url("/pics/c675574c79d501b56822") format("opentype"); font-display: auto; font-style: italic; font-weight: 300; font-stretch: normal; }
+
+@font-face { font-family: forma-djr-text; src: url("/pics/82aa7861095fd07636fe") format("woff2"), url("/pics/da695d7bd97e0a9e6e85") format("woff"), url("/pics/75006b5dae7dd813ebaf") format("opentype"); font-display: auto; font-style: normal; font-weight: 300; font-stretch: normal; }
+
+@font-face { font-family: forma-djr-text; src: url("/pics/92b6def7cbbd20632a91") format("woff2"), url("/pics/f41a8474a99b1256632d") format("woff"), url("/pics/de90795e0a4eddf16b2e") format("opentype"); font-display: auto; font-style: normal; font-weight: 400; font-stretch: normal; }
+
+.tk-forma-djr-display { font-family: forma-djr-display, sans-serif; }
+
+.tk-forma-djr-text { font-family: forma-djr-text, sans-serif; }

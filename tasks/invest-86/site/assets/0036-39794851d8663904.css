@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+.MuiBadge-root { display: inline-flex; position: relative; flex-shrink: 0; vertical-align: middle; }
+
+.MuiBadge-badge { height: 20px; display: flex; padding: 0px 6px; z-index: 1; position: absolute; flex-flow: wrap; font-size: 0.75rem; min-width: 20px; box-sizing: border-box; transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1); align-items: center; font-family: Roboto, Helvetica, Arial, sans-serif; font-weight: 500; line-height: 1; place-content: center; border-radius: 10px; }
+
+.MuiBadge-colorPrimary { color: rgb(255, 255, 255); background-color: rgb(63, 81, 181); }
+
+.MuiBadge-colorSecondary { color: rgb(255, 255, 255); background-color: rgb(245, 0, 87); }
+
+.MuiBadge-colorError { color: rgb(255, 255, 255); background-color: rgb(244, 67, 54); }
+
+.MuiBadge-dot { height: 8px; padding: 0px; min-width: 8px; border-radius: 4px; }
+
+.MuiBadge-anchorOriginTopRightRectangle { top: 0px; right: 0px; transform: scale(1) translate(50%, -50%); transform-origin: 100% 0%; }
+
+.MuiBadge-anchorOriginTopRightRectangle.MuiBadge-invisible { transform: scale(0) translate(50%, -50%); }
+
+.MuiBadge-anchorOriginTopRightRectangular { top: 0px; right: 0px; transform: scale(1) translate(50%, -50%); transform-origin: 100% 0%; }
+
+.MuiBadge-anchorOriginTopRightRectangular.MuiBadge-invisible { transform: scale(0) translate(50%, -50%); }
+
+.MuiBadge-anchorOriginBottomRightRectangle { right: 0px; bottom: 0px; transform: scale(1) translate(50%, 50%); transform-origin: 100% 100%; }
+
+.MuiBadge-anchorOriginBottomRightRectangle.MuiBadge-invisible { transform: scale(0) translate(50%, 50%); }
+
+.MuiBadge-anchorOriginBottomRightRectangular { right: 0px; bottom: 0px; transform: scale(1) translate(50%, 50%); transform-origin: 100% 100%; }
+
+.MuiBadge-anchorOriginBottomRightRectangular.MuiBadge-invisible { transform: scale(0) translate(50%, 50%); }
+
+.MuiBadge-anchorOriginTopLeftRectangle { top: 0px; left: 0px; transform: scale(1) translate(-50%, -50%); transform-origin: 0% 0%; }
+
+.MuiBadge-anchorOriginTopLeftRectangle.MuiBadge-invisible { transform: scale(0) translate(-50%, -50%); }
+
+.MuiBadge-anchorOriginTopLeftRectangular { top: 0px; left: 0px; transform: scale(1) translate(-50%, -50%); transform-origin: 0% 0%; }
+
+.MuiBadge-anchorOriginTopLeftRectangular.MuiBadge-invisible { transform: scale(0) translate(-50%, -50%); }
+
+.MuiBadge-anchorOriginBottomLeftRectangle { left: 0px; bottom: 0px; transform: scale(1) translate(-50%, 50%); transform-origin: 0% 100%; }
+
+.MuiBadge-anchorOriginBottomLeftRectangle.MuiBadge-invisible { transform: scale(0) translate(-50%, 50%); }
+
+.MuiBadge-anchorOriginBottomLeftRectangular { left: 0px; bottom: 0px; transform: scale(1) translate(-50%, 50%); transform-origin: 0% 100%; }
+
+.MuiBadge-anchorOriginBottomLeftRectangular.MuiBadge-invisible { transform: scale(0) translate(-50%, 50%); }
+
+.MuiBadge-anchorOriginTopRightCircle { top: 14%; right: 14%; transform: scale(1) translate(50%, -50%); transform-origin: 100% 0%; }
+
+.MuiBadge-anchorOriginTopRightCircle.MuiBadge-invisible { transform: scale(0) translate(50%, -50%); }
+
+.MuiBadge-anchorOriginTopRightCircular { top: 14%; right: 14%; transform: scale(1) translate(50%, -50%); transform-origin: 100% 0%; }
+
+.MuiBadge-anchorOriginTopRightCircular.MuiBadge-invisible { transform: scale(0) translate(50%, -50%); }
+
+.MuiBadge-anchorOriginBottomRightCircle { right: 14%; bottom: 14%; transform: scale(1) translate(50%, 50%); transform-origin: 100% 100%; }
+
+.MuiBadge-anchorOriginBottomRightCircle.MuiBadge-invisible { transform: scale(0) translate(50%, 50%); }
+
+.MuiBadge-anchorOriginBottomRightCircular { right: 14%; bottom: 14%; transform: scale(1) translate(50%, 50%); transform-origin: 100% 100%; }
+
+.MuiBadge-anchorOriginBottomRightCircular.MuiBadge-invisible { transform: scale(0) translate(50%, 50%); }
+
+.MuiBadge-anchorOriginTopLeftCircle { top: 14%; left: 14%; transform: scale(1) translate(-50%, -50%); transform-origin: 0% 0%; }
+
+.MuiBadge-anchorOriginTopLeftCircle.MuiBadge-invisible { transform: scale(0) translate(-50%, -50%); }
+
+.MuiBadge-anchorOriginTopLeftCircular { top: 14%; left: 14%; transform: scale(1) translate(-50%, -50%); transform-origin: 0% 0%; }
+
+.MuiBadge-anchorOriginTopLeftCircular.MuiBadge-invisible { transform: scale(0) translate(-50%, -50%); }
+
+.MuiBadge-anchorOriginBottomLeftCircle { left: 14%; bottom: 14%; transform: scale(1) translate(-50%, 50%); transform-origin: 0% 100%; }
+
+.MuiBadge-anchorOriginBottomLeftCircle.MuiBadge-invisible { transform: scale(0) translate(-50%, 50%); }
+
+.MuiBadge-anchorOriginBottomLeftCircular { left: 14%; bottom: 14%; transform: scale(1) translate(-50%, 50%); transform-origin: 0% 100%; }
+
+.MuiBadge-anchorOriginBottomLeftCircular.MuiBadge-invisible { transform: scale(0) translate(-50%, 50%); }
+
+.MuiBadge-invisible { transition: transform 195ms cubic-bezier(0.4, 0, 0.2, 1); }

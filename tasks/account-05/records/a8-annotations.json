@@ -1,0 +1,57 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "e73e30556ac778191162055bfe2a214e50b6dc2b839312c152aa7a68afb5f55b",
+    "new_sha256": "1b728a578f7be40047822172c94962ef27973ff50ded0952fcdcb16e965e90ba"
+   },
+   {
+    "kind": "cut",
+    "where": "before",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": "\"payload\": {\n    \"host\": \"abdullohnajmiddinov.github.io\",\n    \"recipient\": \"page owner\"\n   },\n   ",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "signin",
+      "action": "signin",
+      "keys": [
+       "host",
+       "recipient"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "host",
+        "rule": "payload-unread-key",
+        "value": "abdullohnajmiddinov.github.io"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "recipient",
+        "rule": "payload-unread-key",
+        "value": "page owner"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

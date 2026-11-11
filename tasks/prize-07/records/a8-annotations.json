@@ -1,0 +1,57 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "4814feae70c9f9caec17e1f980b3f60232758a584d9247ab78d3762f98f67620",
+    "new_sha256": "d037a99772850d63e4d3fdcc473724c5364e08bad3a0908e8d68ed3b1b0c0cf6"
+   },
+   {
+    "kind": "cut",
+    "where": "before",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": "\"payload\": {\n    \"service\": \"PSC Klub Premium SMS\",\n    \"price_pln_per_week\": 30.75\n   },\n   ",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "sms",
+      "action": "sms",
+      "keys": [
+       "service",
+       "price_pln_per_week"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "service",
+        "rule": "payload-unread-key",
+        "value": "PSC Klub Premium SMS"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "price_pln_per_week",
+        "rule": "payload-unread-key",
+        "value": 30.75
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

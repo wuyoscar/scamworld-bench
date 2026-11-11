@@ -1,0 +1,14 @@
+# BrowserGym experiments (ServiceNow, Apache-2.0) at commit e71419aef5759a11cb7896a26c36e5f7e92d82b2,
+# browsergym/experiments/src only (packages bgym and browsergym.experiments). Dependencies: see the scamworld project.
+[project]
+name = "browsergym-experiments"
+version = "0.14.3+e71419ae"
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bgym", "src/browsergym"]

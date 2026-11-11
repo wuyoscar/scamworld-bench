@@ -1,0 +1,46 @@
+{
+ "_comment": "Copy to configs/endpoints.json (or point SCAMWORLD_ENDPOINTS / --endpoints at your copy) and use --model endpoint:<name>. Keys are read from the environment variable named by api_key_env, never from this file. Every key except base_url and model is optional.",
+ "endpoints": {
+  "vllm-qwen-vl": {
+   "base_url": "http://localhost:8000/v1",
+   "model": "Qwen/Qwen3-VL-8B-Instruct",
+   "api_key_env": null,
+   "max_tokens": 4096,
+   "context": 32768,
+   "vision": true,
+   "extra_body": {"chat_template_kwargs": {"enable_thinking": false}}
+  },
+  "ollama-text": {
+   "base_url": "http://localhost:11434/v1",
+   "model": "qwen3:8b",
+   "max_tokens": 2048,
+   "context": 32768,
+   "vision": false,
+   "timeout": 600
+  },
+  "openai": {
+   "base_url": "https://api.openai.com/v1",
+   "model": "gpt-4.1-mini",
+   "api_key_env": "OPENAI_API_KEY",
+   "max_tokens": 4096,
+   "context": 1000000,
+   "price": {"input_per_mtok": 0.40, "output_per_mtok": 1.60},
+   "_price": "example figures: put your provider's current prices here, or leave price out (cost is then the server's usage.cost if it reports one, else 0)"
+  },
+  "openrouter-any": {
+   "base_url": "https://openrouter.ai/api/v1",
+   "model": "qwen/qwen3-vl-235b-a22b-instruct",
+   "api_key_env": "OPENROUTER_API_KEY",
+   "max_tokens": 4096,
+   "context": 131072
+  },
+  "reasoning-model": {
+   "base_url": "https://api.together.xyz/v1",
+   "model": "deepseek-ai/DeepSeek-V3.1",
+   "api_key_env": "TOGETHER_API_KEY",
+   "max_tokens": 8192,
+   "reasoning_effort": "medium",
+   "drop_fields": ["response_format"]
+  }
+ }
+}

@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+:root { --primary-color: #0372d2; }
+
+.header-main { height: 90px; }
+
+#logo img { max-height: 90px; }
+
+#logo { width: 200px; }
+
+.header-bottom { min-height: 47px; }
+
+.header-top { min-height: 30px; }
+
+.transparent .header-main { height: 90px; }
+
+.transparent #logo img { max-height: 90px; }
+
+.has-transparent + .page-title:first-of-type, .has-transparent + #main > .page-title, .has-transparent + #main > div > .page-title, .has-transparent + #main .page-header-wrapper:first-of-type .page-title { padding-top: 140px; }
+
+.header.show-on-scroll, .stuck .header-main { height: 70px !important; }
+
+.stuck #logo img { max-height: 70px !important; }
+
+.header-bg-color, .header-wrapper { background-color: rgb(255, 255, 255); }
+
+.header-bottom { background-color: rgb(33, 33, 33); }
+
+.header-bottom-nav > li > a { line-height: 28px; }
+
+@media (max-width: 549px) {
+  .header-main { height: 70px; }
+  #logo img { max-height: 70px; }
+}
+
+.nav-dropdown-has-arrow.nav-dropdown-has-border li.has-dropdown::before { border-bottom-color: rgb(255, 255, 255); }
+
+.nav .nav-dropdown { border-color: rgb(255, 255, 255); }
+
+.accordion-title.active, .has-icon-bg .icon .icon-inner, .logo a, .primary.is-underline, .primary.is-link, .badge-outline .badge-inner, .nav-outline > li.active > a, .nav-outline > li.active > a, .cart-icon strong, [data-color="primary"], .is-outline.primary { color: rgb(3, 114, 210); }
+
+[data-text-color="primary"] { color: rgb(3, 114, 210) !important; }
+
+[data-text-bg="primary"] { background-color: rgb(3, 114, 210); }
+
+.scroll-to-bullets a, .featured-title, .label-new.menu-item > a::after, .nav-pagination > li > .current, .nav-pagination > li > span:hover, .nav-pagination > li > a:hover, .has-hover:hover .badge-outline .badge-inner, button[type="submit"], .button.wc-forward:not(.checkout):not(.checkout-button), .button.submit-button, .button.primary:not(.is-outline), .featured-table .title, .is-outline:hover, .has-icon:hover .icon-label, .nav-dropdown-bold .nav-column li > a:hover, .nav-dropdown.nav-dropdown-bold > li > a:hover, .nav-dropdown-bold.dark .nav-column li > a:hover, .nav-dropdown.nav-dropdown-bold.dark > li > a:hover, .is-outline:hover, .tagcloud a:hover, .grid-tools a, input[type="submit"]:not(.is-form), .box-badge:hover .box-text, input.button.alt, .nav-box > li > a:hover, .nav-box > li.active > a, .nav-pills > li.active > a, .current-dropdown .cart-icon strong, .cart-icon:hover strong, .nav-line-bottom > li > a::before, .nav-line-grow > li > a::before, .nav-line > li > a::before, .banner, .header-top, .slider-nav-circle .flickity-prev-next-button:hover svg, .slider-nav-circle .flickity-prev-next-button:hover .arrow, .primary.is-outline:hover, .button.primary:not(.is-outline), input[type="submit"].primary, input[type="submit"].primary, input[type="reset"].button, input[type="button"].primary, .badge-inner { background-color: rgb(3, 114, 210); }
+
+.nav-vertical.nav-tabs > li.active > a, .scroll-to-bullets a.active, .nav-pagination > li > .current, .nav-pagination > li > span:hover, .nav-pagination > li > a:hover, .has-hover:hover .badge-outline .badge-inner, .accordion-title.active, .featured-table, .is-outline:hover, .tagcloud a:hover, blockquote, .has-border, .cart-icon strong::after, .cart-icon strong, .blockUI::before, .processing::before, .loading-spin, .slider-nav-circle .flickity-prev-next-button:hover svg, .slider-nav-circle .flickity-prev-next-button:hover .arrow, .primary.is-outline:hover { border-color: rgb(3, 114, 210); }
+
+.nav-tabs > li.active > a { border-top-color: rgb(3, 114, 210); }
+
+.widget_shopping_cart_content .blockUI.blockOverlay::before { border-left-color: rgb(3, 114, 210); }
+
+.woocommerce-checkout-review-order .blockUI.blockOverlay::before { border-left-color: rgb(3, 114, 210); }
+
+.slider .flickity-prev-next-button:hover svg, .slider .flickity-prev-next-button:hover .arrow { fill: rgb(3, 114, 210); }
+
+[data-icon-label]::after, .secondary.is-underline:hover, .secondary.is-outline:hover, .icon-label, .button.secondary:not(.is-outline), .button.alt:not(.is-outline), .badge-inner.on-sale, .button.checkout, .single_add_to_cart_button, .current .breadcrumb-step { background-color: rgb(3, 114, 210); }
+
+[data-text-bg="secondary"] { background-color: rgb(3, 114, 210); }
+
+.secondary.is-underline, .secondary.is-link, .secondary.is-outline, .stars a.active, .star-rating::before, .woocommerce-page .star-rating::before, .star-rating span::before, .color-secondary { color: rgb(3, 114, 210); }
+
+[data-text-color="secondary"] { color: rgb(3, 114, 210) !important; }
+
+.secondary.is-outline:hover { border-color: rgb(3, 114, 210); }
+
+body { font-family: Montserrat, sans-serif; }
+
+.nav > li > a { font-family: Montserrat, sans-serif; }
+
+.mobile-sidebar-levels-2 .nav > li > ul > li > a { font-family: Montserrat, sans-serif; }
+
+.nav > li > a { font-weight: 400; }
+
+.mobile-sidebar-levels-2 .nav > li > ul > li > a { font-weight: 400; }
+
+h1, h2, h3, h4, h5, h6, .heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a { font-family: Montserrat, sans-serif; }
+
+.alt-font { font-family: "Dancing Script", sans-serif; }
+
+.alt-font { font-weight: 400 !important; }
+
+@media screen and (min-width: 550px) {
+  .products .box-vertical .box-image { min-width: 300px !important; width: 300px !important; }
+}
+
+.footer-2 { background-color: rgb(0, 0, 0); }
+
+.absolute-footer, html { background-color: rgb(0, 0, 0); }
+
+.label-new.menu-item > a::after { content: "New"; }
+
+.label-hot.menu-item > a::after { content: "Hot"; }
+
+.label-sale.menu-item > a::after { content: "Sale"; }
+
+.label-popular.menu-item > a::after { content: "Popular"; }

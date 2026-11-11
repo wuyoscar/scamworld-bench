@@ -1,0 +1,16 @@
+ScamWorld website and task data
+
+The website reconstructions and task files of ScamWorld (the tasks/ folder of this repository and of the ScamWorld Docker
+image) are licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+
+  Summary:    https://creativecommons.org/licenses/by-nc/4.0/
+  Legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+You may share and adapt the data for non-commercial purposes, with attribution, under the terms of that licence and of
+DISCLAIMER.md. The licence covers the reconstruction work only. It grants no rights in any third-party trademark, logo,
+name or likeness in the pages, whether captured from the original scam or planted by the build (DISCLAIMER.md), including
+the AI-generated portraits of real people; their appearance implies no endorsement or affiliation.
+
+Do not deploy the websites publicly or use them for phishing, fraud or impersonation (DISCLAIMER.md).
+
+The code of ScamWorld is licensed separately under the Apache License 2.0 (LICENSE).

@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+.bg { opacity: 0; transition: opacity 1s; }
+
+.bg-loaded { opacity: 1; }

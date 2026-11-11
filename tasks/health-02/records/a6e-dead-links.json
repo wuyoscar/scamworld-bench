@@ -1,0 +1,41 @@
+{
+ "files": {
+  "fr/politique-de-confidentialite/index.html": [
+   [
+    38001,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "fr/qui-sommes-nous/index.html": [
+   [
+    38001,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    54054,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "livraison.html": [
+   [
+    36926,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "viagra.html": [
+   [
+    36955,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

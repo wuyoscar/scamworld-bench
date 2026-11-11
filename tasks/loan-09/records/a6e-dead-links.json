@@ -1,0 +1,55 @@
+{
+ "files": {
+  "apply.html": [
+   [
+    23743,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "contact/index.html": [
+   [
+    6675,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "faq.html": [
+   [
+    8011,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    24683,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "licence.html": [
+   [
+    7684,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "privacy.html": [
+   [
+    8249,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "terms.html": [
+   [
+    23759,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

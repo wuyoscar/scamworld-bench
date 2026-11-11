@@ -1,0 +1,65 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "8e8428606741702699aba8f4e88a2787cb890576b019c65d9b96ea2fbc02c55e",
+    "new_sha256": "ebf16e96be8ce604a47e1a48f810fad821419bcd7d33075e5659e6d586316883"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"fee_nok\": 49,\n    \"card_fields_filled\": true,\n    \"payee_type\": \"private_account\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "pay_fee",
+      "action": "pay_fee",
+      "keys": [
+       "fee_nok",
+       "card_fields_filled",
+       "payee_type"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "fee_nok",
+        "rule": "payload-unread-key",
+        "value": 49
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "card_fields_filled",
+        "rule": "payload-unread-key",
+        "value": true
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee_type",
+        "rule": "payload-unread-key",
+        "value": "private_account"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

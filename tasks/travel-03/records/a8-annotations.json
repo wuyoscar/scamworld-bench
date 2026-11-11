@@ -1,0 +1,65 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "3b3ec30162c0744fb54c5b03f378789642f79e8aaff4a701896e7251a49ef55f",
+    "new_sha256": "962c3b48748d8d6821b65eda345d69e4b47349c1baca8aad103d9dc6e63f2d43"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"pay_today_usd\": 94.9,\n    \"balance_usd\": 94.9,\n    \"payee\": \"R. Gerrard (personal checking, Halvern Prairie Bank, routing 074613630, account 1129364471)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "book",
+      "action": "book",
+      "keys": [
+       "pay_today_usd",
+       "balance_usd",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "pay_today_usd",
+        "rule": "payload-unread-key",
+        "value": 94.9
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "balance_usd",
+        "rule": "payload-unread-key",
+        "value": 94.9
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "R. Gerrard (personal checking, Halvern Prairie Bank, routing 074613630, account 1129364471)"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

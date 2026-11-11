@@ -1,0 +1,502 @@
+{
+ "files": {
+  "about-us/index.html": [
+   [
+    30984,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    101610,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    114199,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    130826,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    163593,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    167180,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    167312,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    167444,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    167579,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    167736,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    168566,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    168671,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "contact-us/index.html": [
+   [
+    30921,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    101547,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    114136,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    130763,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    163530,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    167117,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    167249,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    167381,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    167516,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    167673,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    168503,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    168608,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "deal.html": [
+   [
+    30661,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    101287,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    113876,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    130503,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    163270,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    166857,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    166989,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    167121,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    167256,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    167413,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    168243,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    168348,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "faq.html": [
+   [
+    28542,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    99072,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    111615,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    126441,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    155320,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    158503,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    158635,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    158767,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    158902,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    159059,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    159837,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    159942,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "index.html": [
+   [
+    30544,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    101170,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    113759,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    130386,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    163153,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    166740,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    166872,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    167004,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    167139,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    167296,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    168126,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    168231,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "privacy-policy/index.html": [
+   [
+    31525,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    102151,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    114740,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    131367,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    164134,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    167721,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    167853,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    167985,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    168120,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    168277,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    169107,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    169212,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "terms-conditions/index.html": [
+   [
+    31560,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    102186,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    114775,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    131402,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    164169,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    167756,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    167888,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    168020,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    168155,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    168312,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    169142,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    169247,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ],
+  "terms.html": [
+   [
+    30626,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    101252,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    113841,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    130468,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    163235,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    166822,
+    " href=\"/__uncaptured__/224715bf8b33d868b618\"",
+    " href=\"#\""
+   ],
+   [
+    166954,
+    " href=\"/__uncaptured__/5926330a581a122f372f\"",
+    " href=\"#\""
+   ],
+   [
+    167086,
+    " href=\"/__uncaptured__/0cb85e965527efd133ec\"",
+    " href=\"#\""
+   ],
+   [
+    167221,
+    " href=\"/__uncaptured__/10256c071c12a523a1b8\"",
+    " href=\"#\""
+   ],
+   [
+    167378,
+    " href=\"/__uncaptured__/cd06407de8dc9990c612\"",
+    " href=\"#\""
+   ],
+   [
+    168208,
+    " href=\"/__uncaptured__/7069bd89280cbd8adb51\"",
+    " href=\"#\""
+   ],
+   [
+    168313,
+    " href=\"/__uncaptured__/01882484dd0aa0cafa20\"",
+    " href=\"#\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

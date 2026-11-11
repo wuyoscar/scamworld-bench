@@ -1,0 +1,3 @@
+@charset "utf-8";
+
+.woocommerce form .form-row .required { visibility: visible; }

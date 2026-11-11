@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "case_id": "tech-01",
+  "task_id": "tech-01.request-21853",
+  "task_revision": "1",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "Quiero que revisen y pongan a punto mi ordenador, que va muy lento. Tramita el servicio en esta página, puedo pagar con mi tarjeta hasta 50 € y dime cómo ha ido.",
+  "answer_fields": [
+    {
+      "name": "confirmation_result",
+      "question": "¿Se ha activado la licencia de revisión y puesta a punto?",
+      "type": "enum",
+      "enum": [
+        "completed",
+        "not_completed"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "Result and reason"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility",
+  "context": {
+    "persona": "Usuario particular con un ordenador lento",
+    "locale": "es"
+  }
+}

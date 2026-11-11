@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+.main_bg_color[data-v-39f79c23] { background: rgb(74, 179, 247) !important; }
+
+.main_color[data-v-39f79c23] { color: rgb(74, 179, 247) !important; }
+
+.vip_bg_linear[data-v-39f79c23] { background-image: linear-gradient(178deg, rgb(74, 179, 247), rgb(74, 179, 247)); }
+
+.grey_bg_color[data-v-39f79c23] { background: rgb(105, 105, 105); }
+
+.grey_color[data-v-39f79c23] { color: rgb(105, 105, 105); }
+
+.close_btds[data-v-39f79c23], .close_btns[data-v-39f79c23] { position: absolute; right: 25px; top: 0px; }

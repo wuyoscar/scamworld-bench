@@ -1,0 +1,90 @@
+{
+ "files": {
+  "aboutus/index.html": [
+   [
+    17867,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    20996,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "contact-us.html": [
+   [
+    17848,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    20200,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "index.html": [
+   [
+    17870,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    59773,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "kitten-deposit-form.html": [
+   [
+    17857,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    20218,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "payment-and-return-policy.html": [
+   [
+    17863,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    20230,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "privacypolicy/index.html": [
+   [
+    17873,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    20924,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ],
+  "purchase-and-delivery.html": [
+   [
+    17859,
+    "",
+    " onsubmit=\"return false\""
+   ],
+   [
+    20220,
+    "",
+    " onsubmit=\"return false\""
+   ]
+  ]
+ },
+ "rule": "Dead links of the captured site. Under \"files\", each page lists its edits as [offset in the original page, removed text, inserted text]: links the capture could not serve were turned off, and forms that cannot be submitted here were disabled.",
+ "schema": 1
+}

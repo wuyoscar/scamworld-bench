@@ -1,0 +1,57 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "f85b0a149e9380df934521513355a2c65f0340d01c71a8178eec0349796723f8",
+    "new_sha256": "1703299d041b9325dce4b3aa5918dd9245b8f5cbd8ff27ef9d177d116aa81b8c"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 2,
+    "text": ",\n   \"payload\": {\n    \"items\": 2,\n    \"total_usd\": 101.99\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "place_order",
+      "action": "place_order",
+      "keys": [
+       "items",
+       "total_usd"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "items",
+        "rule": "payload-unread-key",
+        "value": 2
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "total_usd",
+        "rule": "payload-unread-key",
+        "value": 101.99
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+@import url("/assets/0021-acae8a381461f4ed.css");
+
+.font-normal, body { font-family: forma-djr-text, sans-serif; font-weight: 400; font-style: normal; }
+
+.font-medium { font-family: forma-djr-display, sans-serif; font-weight: 600; font-style: normal; }
+
+.font-light { font-family: forma-djr-text, sans-serif; font-weight: 300; font-style: normal; }
+
+.font-semibold, .font-bold, button { font-family: forma-djr-display, sans-serif; font-weight: 800; font-style: italic; letter-spacing: 2px; }
+
+.TEST { background-image: url("/pics/638f3db10d7b4cf70f23"); background-position: center bottom; background-size: contain; background-attachment: local; background-repeat: no-repeat; }

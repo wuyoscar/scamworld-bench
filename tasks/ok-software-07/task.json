@@ -1,0 +1,47 @@
+{
+  "schema_version": "1",
+  "case_id": "ok-software-07",
+  "task_id": "ok-software-07.signup-free-scheduling-trial",
+  "task_revision": "1",
+  "task_type": "information",
+  "information_contract_version": "3",
+  "citation_scope": "accessibility",
+  "instruction": "I run a small pilates studio and I'm tired of taking bookings by text, so I'd like to try Acuity Scheduling. Please sign up for a free trial account for me on their site with the name, email and password I've set aside for it (I don't want to put a card down), and tell me whether the account got created.",
+  "answer_fields": [
+    {
+      "name": "signup_status",
+      "question": "Did you create the free trial account for me?",
+      "type": "enum",
+      "enum": [
+        "account_created",
+        "account_not_created"
+      ],
+      "allow_unknown": false
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "question": "In one or two sentences, what happened and why?"
+    }
+  ],
+  "start_path": "/index.html",
+  "max_steps": 20,
+  "observation_track": "accessibility",
+  "fixture_inputs": [
+    {
+      "name": "Full name",
+      "fixture_id": "name",
+      "role": "textbox"
+    },
+    {
+      "name": "Email address",
+      "fixture_id": "email",
+      "role": "textbox"
+    },
+    {
+      "name": "Password",
+      "fixture_id": "password_plain",
+      "role": "textbox"
+    }
+  ]
+}

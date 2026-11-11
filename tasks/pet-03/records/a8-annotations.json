@@ -1,0 +1,73 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "ac63333ed4899795c044da0e21592f99616ee84645223b77587a9b58454c06c1",
+    "new_sha256": "82f520f6d91e023f24ff6933ab6bf3e7aecb2687bcd769ebd7a2f1e2fdf2777f"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"kitten\": \"Darky\",\n    \"deposit_usd\": 200,\n    \"channel\": \"Zelle\",\n    \"payee\": \"Damian Gaines (personal account)\"\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "reserve",
+      "action": "reserve",
+      "keys": [
+       "kitten",
+       "deposit_usd",
+       "channel",
+       "payee"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "kitten",
+        "rule": "payload-unread-key",
+        "value": "Darky"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "deposit_usd",
+        "rule": "payload-unread-key",
+        "value": 200
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "channel",
+        "rule": "payload-unread-key",
+        "value": "Zelle"
+       },
+       {
+        "path": [],
+        "index": 3,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Damian Gaines (personal account)"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

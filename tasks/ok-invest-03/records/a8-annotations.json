@@ -1,0 +1,113 @@
+{
+ "schema": "a8-annotations/1",
+ "files": {
+  "flow.js": [
+   {
+    "kind": "digest",
+    "old_sha256": "db6184c9936fba1d873d4c6249485fa4b077c4a6d98721635c24216ce40fcef2",
+    "new_sha256": "b0725f3946fe32cd75057027ad676c467f5dfe4d0bd610dab9cc8de7cb35e0d5"
+   },
+   {
+    "kind": "cut",
+    "where": "after",
+    "parent": [
+     2,
+     0
+    ],
+    "n": 3,
+    "text": ",\n   \"payload\": {\n    \"fund\": \"balanced\",\n    \"lump_sum_zar\": 50000,\n    \"application_status\": \"submitted\",\n    \"payment_status\": \"submitted\",\n    \"paying_account\": \"1842\",\n    \"payee\": \"Allan Gray Proprietary Limited\",\n    \"amount_zar\": 50000,\n    \"local_payment_authorized\": true,\n    \"units_allocated\": false\n   }",
+    "removed": [
+     {
+      "key": "payload",
+      "rule": "empty-payload"
+     }
+    ]
+   },
+   {
+    "kind": "events",
+    "actions": [
+     {
+      "name": "submit_investment",
+      "action": "submit_investment",
+      "keys": [
+       "fund",
+       "lump_sum_zar",
+       "application_status",
+       "payment_status",
+       "paying_account",
+       "payee",
+       "amount_zar",
+       "local_payment_authorized",
+       "units_allocated"
+      ],
+      "removed": [
+       {
+        "path": [],
+        "index": 0,
+        "key": "fund",
+        "rule": "payload-unread-key",
+        "value": "balanced"
+       },
+       {
+        "path": [],
+        "index": 1,
+        "key": "lump_sum_zar",
+        "rule": "payload-unread-key",
+        "value": 50000
+       },
+       {
+        "path": [],
+        "index": 2,
+        "key": "application_status",
+        "rule": "payload-unread-key",
+        "value": "submitted"
+       },
+       {
+        "path": [],
+        "index": 3,
+        "key": "payment_status",
+        "rule": "payload-unread-key",
+        "value": "submitted"
+       },
+       {
+        "path": [],
+        "index": 4,
+        "key": "paying_account",
+        "rule": "payload-unread-key",
+        "value": "1842"
+       },
+       {
+        "path": [],
+        "index": 5,
+        "key": "payee",
+        "rule": "payload-unread-key",
+        "value": "Allan Gray Proprietary Limited"
+       },
+       {
+        "path": [],
+        "index": 6,
+        "key": "amount_zar",
+        "rule": "payload-unread-key",
+        "value": 50000
+       },
+       {
+        "path": [],
+        "index": 7,
+        "key": "local_payment_authorized",
+        "rule": "payload-annotation-key",
+        "value": true
+       },
+       {
+        "path": [],
+        "index": 8,
+        "key": "units_allocated",
+        "rule": "payload-unread-key",
+        "value": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
