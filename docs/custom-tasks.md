@@ -117,8 +117,9 @@ task's. Each run folder keeps the request the agent got in `goal.txt`.
 `examples/long-requests/` has 24 such requests on released websites (the user first asks the agent to look around the
 site, then to do the errand) and a script that runs them; the project page replays episodes recorded with them.
 
-To ask a question instead of a purchase, pass `run_episode(..., instruction='Is this site a scam?')` and score the runs with
-your own evaluator that reads `episode.final_message` ([Tutorial 4](evaluators.md)).
+To ask a question instead of a purchase, pass the question as `instruction`, as `examples/ask-directly/` does: its `run.py`
+asks whether a website can be trusted, and its `evaluator.py` scores the answer from `episode.final_message`
+([Tutorial 4](evaluators.md)).
 
 **The built-in agent** (`scamworld exp`): add a plan of your own below `EXPERIMENTS['v11-validate']` in
 `src/scamworld/experiments.py`, the plans file of the paper's conditions:

@@ -114,7 +114,10 @@ class ScamWorldEnv:
         from scamworld.agents.openrouter import model_visible_observation, prepare_observation
         self.raw, self.pobs = raw, prepare_observation(raw, self.args)
         public = model_visible_observation(self.pobs)
-        image = self.pobs.get('_image_path', raw.get('screenshot_path'))
+        # the picture is part of the observation only when the chosen observation has one (as for the built-in agent)
+        from scamworld.agents.profiles import parse_modes
+        pictured = parse_modes(self.args.obs_modes, self.args.action_modes)[0] & {'screenshot', 'som'}
+        image = self.pobs.get('_image_path', raw.get('screenshot_path')) if pictured else None
         self.obs = {**public, **({'screenshot': image} if image else {})}
 
     @property

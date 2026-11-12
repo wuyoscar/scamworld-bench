@@ -83,7 +83,7 @@ Each observation is a dict:
 | `request` | the user's saved details: profile (name, address, e-mail, phone, saved card or bank account), saved form values, locale |
 | `url` | the page address as the browser shows it (the site's own logical address, never 127.0.0.1) |
 | `controls` | the accessibility list of the page: `{"role", "name", "bid", ...}` per node, for the whole page, in the order in which the browser returns its accessibility nodes (level by level in Chrome, iframe contents last, so a button can come before its heading; bids are numbered in page order, and `axtree_txt` shows the same tree depth-first); `bid` is the BrowserGym element id that actions take, and plain text nodes have none |
-| `screenshot` | path of the viewport screenshot (PNG, 1280 x 900); with `som`, the same screenshot with a numbered label on each element |
+| `screenshot` | path of the viewport screenshot (PNG, 1280 x 900); with `som`, the same screenshot with a numbered label on each element. Present only when `obs_modes` has `screenshot` or `som` |
 | `axtree_txt` | with `ax_tree`: the accessibility tree as indented text, each node with its `bid` |
 | `pruned_html` | with `html`: the pruned page source; elements in the accessibility tree keep their `bid` attribute |
 | `last_action_error` | why the previous action failed, or empty |

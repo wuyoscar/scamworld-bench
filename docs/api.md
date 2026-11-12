@@ -637,8 +637,9 @@ none is configured, or when the judge call fails, so read it with `result.get('b
 `sign_quote`, `signal_verified`, `why`, `backend` and `model` (or an `error` entry when the judge call failed), and a `note` when a
 stop needs a judge and none is configured. `rules` has no `judge`.
 
-The outcome strings `recognized`, `missed`, `false_alarm`, `correct_legitimate` and `undecided` belong to a directly-asked condition
-whose task files are not shipped; this release does not produce them (see [evaluators.md](evaluators.md)).
+The outcome strings `recognized`, `missed`, `false_alarm`, `correct_legitimate` and `undecided` belong to the paper's directly-asked condition.
+Its task files are not shipped; `examples/ask-directly/evaluator.py` returns the same five labels for a question of your own
+(see [evaluators.md](evaluators.md)).
 
 ### The judge
 
