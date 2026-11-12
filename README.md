@@ -35,20 +35,22 @@
   <a href="docs/task-format.md">Task format</a>
 </p>
 
-**ScamWorld** is an interactive environment for evaluating web agents against online fraud. It reconstructs 363 reported scam websites, spanning 16 fraud scenarios, 38 fraud mechanisms (in 14 families) and 26 languages (Simplified and Traditional Chinese counted separately), together with 53 legitimate control websites. All websites are served locally and run in a standard browser. Agents can observe screenshots, HTML or the accessibility tree, and act through clicks, typing, scrolling and navigation.
+<p align="center">
+  <a href="https://wuyoscar.github.io/scamworld-bench/"><img src="assets/site.gif" width="100%" alt="The ScamWorld project page: every task's start page on a turning globe, then an episode replayed step by step, with the agent's cursor, its reasoning and the warning signs circled on the page"></a>
+  <br>
+  <sub>The <a href="https://wuyoscar.github.io/scamworld-bench/">project page</a>: all the task websites on one globe, and recorded episodes replayed step by step.</sub>
+</p>
 
-The environment comes with 430 tasks: one per website (363 scam, 53 legitimate) plus 14 variants of scam websites with a different request (377 scam tasks in all). It also has a gym-style interface for your own agent, an agent that runs on any OpenAI-compatible model API, and replaceable evaluators. You can also write tasks of your own.
+**ScamWorld** is an interactive environment for evaluating web agents against online fraud. It rebuilds 363 reported scam websites as local sites that run in a standard browser, together with 53 legitimate websites as controls. The websites span 16 fraud scenarios, 38 fraud mechanisms (in 14 families) and 26 languages (Simplified and Traditional Chinese counted separately). An agent observes screenshots, HTML or the accessibility tree, and acts through clicks, typing, scrolling and navigation.
 
-**Browse it.** The [project page](https://wuyoscar.github.io/scamworld-bench/) shows the websites and tasks and what an agent sees and does in the environment. All 430 tasks with their websites are on Hugging Face as [oscarwu/ScamWorld](https://huggingface.co/datasets/oscarwu/ScamWorld).
+The environment comes with:
 
-**Labels.** The fraud families a scam website uses (14 families in all) are in the `fraud_families` column of the
-Hugging Face table (`data/tasks.parquet`; columns `start_page`, `task`, `scenario`, `language`, `legitimate_site`,
-`fraud_families`, `variant_of`, `request`, `site_pages`, `site_files`). The `mechanism.family` field in a task's
-`scoring/spec.json` is a description of that site's own mechanism, not one of the 14 families. This release has no
-file that maps tasks to the 38 fraud mechanisms; they are the paper's taxonomy. `mechanism.id` is a slug on 358
-tasks; on 33 it holds codes `M<n>` in the numbering of the paper's mechanism table (`M5` or `M05`; several joined by
-`+` on 3), on 4 a code `E<n>` (an earlier numbering of two rows of that table), and on 35 a code `C<n>` or `S<n>` (on 2
-followed by a slug) of construction-time catalogues that are not released, so it is not a map to the 38.
+- **430 tasks.** One per website (363 scam, 53 legitimate) plus 14 variants of scam websites with a different request (377 scam tasks in all). Each task is an ordinary user request; the agent is never told that the site may be a scam.
+- **A gym-style interface** for your own agent, and a built-in agent that runs on any OpenAI-compatible model API.
+- **Replaceable evaluators.** The outcome comes from what the agent did on the site, not from what it says.
+- **Tools for tasks of your own**: copy a released task, write a new request, check it and run it.
+
+**Browse it.** The [project page](https://wuyoscar.github.io/scamworld-bench/) shows the websites, what an agent sees under each observation mode, and episodes replayed step by step. All 430 tasks with their websites are on Hugging Face as [oscarwu/ScamWorld](https://huggingface.co/datasets/oscarwu/ScamWorld).
 
 ## Overview
 
@@ -477,6 +479,18 @@ Like every plan except `v11-validate`, `custom` uses the a11 layout and the Engl
   `r8-asked-nourl`; the paper's explicit assessment, where the agent is asked directly whether the site is a scam) is
   among them: its task files are not shipped, so this release cannot produce the asked outcomes.
 
+## Labels in the data
+
+The fraud families a scam website uses (14 families in all) are in the `fraud_families` column of the
+Hugging Face table (`data/tasks.parquet`; columns `start_page`, `task`, `scenario`, `language`, `legitimate_site`,
+`fraud_families`, `variant_of`, `request`, `site_pages`, `site_files`). The `mechanism.family` field in a task's
+`scoring/spec.json` is a description of that site's own mechanism, not one of the 14 families. This release has no
+file that maps tasks to the 38 fraud mechanisms; they are the paper's taxonomy. `mechanism.id` is not a key
+into the 38 mechanisms either. It is a slug on 358 tasks; an `M<n>` code from the paper's mechanism table on 33
+(written `M5` or `M05`, with several joined by `+` on 3 of them); an `E<n>` code from an earlier numbering of two rows
+of that table on 4; and a `C<n>` or `S<n>` code from construction-time catalogues that are not released on 35 (2 of
+them followed by a slug).
+
 ## How the websites are built
 
 We collect scam URLs reported by victims, watchdogs and authorities, recover their pages from the live web or the Wayback Machine, annotate them against a catalogue of fraud mechanisms, and rebuild the selected websites so that each task can be completed in a browser.
@@ -536,7 +550,7 @@ and organisations named. The elements are listed per task in `scoring/spec.json`
 tasks (the signed-in user and the saved details: names, e-mail, phone, address, cards) are fictional. Scam websites
 keep the contact details the scammers published on the original pages, as part of the reconstructed fraud; some
 placeholder contacts were replaced with fictional ones. Legitimate control websites keep the organisations' public
-contact addresses; personal addresses were removed. Do not contact any address in the dataset or send it money. The
+contact addresses; personal addresses were removed. Do not contact anyone listed in the dataset or send them money. The
 sites never send anything anywhere (the agent's prompt carries the task profile to the model API you run). Use the
 websites for research only: **do not deploy them publicly or use them for phishing**. The runtime serves every site on
 127.0.0.1 and blocks all other hosts unless `SCAMWORLD_OFFSITE=allowlist` is set. Code: Apache-2.0
