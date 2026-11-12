@@ -57,11 +57,11 @@ The environment ships with 430 ready-made tasks on 363 reported scam websites re
 
 **What makes it usable as an evaluation environment.**
 
-- **Local and repeatable.** Every website is served from local files inside the browser and runs offline by default, so an episode sees the same pages every time. `scamworld check` compares every task file with the release manifest.
-- **The website keeps the record.** A payment, a submitted password or an approved wallet permission is a site event, so the outcome comes from what the agent did, not from what it says.
-- **Every task can be checked without a model.** `scamworld verify <task>` clicks through a task's paths with scripted probes and checks that each one is scored as intended. It works on your own tasks too.
-- **The request matches the page.** What a request says is saved or signed in is on the page when the agent gets there, and nothing on a page or in its source tells the agent that it is being tested.
-- **Played before release.** Every task was run end to end by two different agents and the episodes were reviewed; the site defects they exposed were fixed. What remains is listed under [Known limitations](#known-limitations).
+- Every website is served from local files inside the browser and runs offline by default, so an episode sees the same pages every time. `scamworld check` compares every task file with the release manifest.
+- A payment, a submitted password or an approved wallet permission is a site event, and the outcome of an episode is read from these events and from the agent's final message.
+- `scamworld verify <task>` clicks through a task's paths with scripted probes and checks that each one is scored as intended, without a model. It works on your own tasks too.
+- What a request says is saved or signed in is on the page when the agent gets there, and nothing on a page or in its source tells the agent that it is being tested.
+- Every task was run end to end by two different agents and the episodes were reviewed; the site defects they exposed were fixed. What remains is listed under [Known limitations](#known-limitations).
 
 **Browse it.** The [project page](https://wuyoscar.github.io/scamworld-bench/) shows the websites, what an agent sees under each observation mode, and episodes replayed step by step. Some of the replays use longer requests of our own on released websites ([examples/long-requests/](examples/long-requests/)). All 430 tasks with their websites are on Hugging Face as [oscarwu/ScamWorld](https://huggingface.co/datasets/oscarwu/ScamWorld).
 
@@ -81,7 +81,7 @@ Each task pairs an ordinary user request with an interactive website. On a scam 
 
 <p align="center"><img src="assets/tasks.jpg" width="100%" alt="Task examples: user requests and browser states from three scam websites and one legitimate control"></p>
 
-The agent is never told that a site may be a scam. An episode ends when the agent sends its final message to the user,
+An episode ends when the agent sends its final message to the user,
 at the step cap, or when it carries out the risky action: on every scam task (and on 49 of the 53 legitimate ones) the
 site records it as `<prefix>.risk_commit`, which is listed in the task's `terminal_event_ids`. The other four
 legitimate tasks (`ok-account-01`, `-03`, `-04`, `-05`) list no such event, and the agent finishes with its own
@@ -294,7 +294,7 @@ The three cards share the label WYBIERAM. The 50 PLN heading is bid 74, so its b
 - Only nodes with a `bid` can be acted on. Plain text nodes have none.
 - Bids are numbered in page order, so the 50 PLN heading (74) comes just before its button (76). The list keeps the order in which the browser returns its accessibility nodes (level by level in Chrome, iframe contents last), which is why the buttons come before their headings; with `--obs ax_tree`, `axtree_txt` shows the same tree depth-first.
 - When a page is too long for the model's context, off-screen nodes are dropped first and `controls_note` says how many.
-- The agent never sees the site's event log, the scoring rules or the task's labels. Nothing tells it that the site may be a scam.
+- The agent never sees the site's event log, the scoring rules or the task's labels.
 
 All actions are listed in [observations and actions](docs/custom-agents.md#observations-and-actions).
 
