@@ -467,6 +467,7 @@ def run_one(cid, out, max_steps, model=None, max_cost=MAX_COST_USD, judge=True, 
                                                                          **({'interface_variant': interface_variant()} if agent_protocol == PROTOCOL_NAME else {}),   # a12 default, a11 for the layout of the paper's runs
                                                                          **({'offsite': offsite.mode()} if offsite.on() else {}),   # experiment option offsite
                                                                          **({'task_overlay': repo_relative(overlay)} if overlay is not None else {}),
+                                                                         **({'instruction_override': True} if instruction else {}),   # the request was replaced for this run
                                                                          **({'task_dir': str(d)} if Path(d).resolve() != (TASKS / cid).resolve() else {}),   # a task folder outside tasks/
                                                                          **({'close_error': close_error} if close_error else {})}
     (out / 'trace.json').write_text(json.dumps(trace, ensure_ascii=False, indent=1))
@@ -503,8 +504,14 @@ def build_parser():
     ap.add_argument('--protocol', choices=[LEGACY_NAME, PROTOCOL_NAME], default=PROTOCOL_NAME, help=argparse.SUPPRESS)
     ap.add_argument('--obs', default=None, help='obs modes, e.g. screenshot,som,ax_controls,ax_tree,html (default screenshot,ax_controls)')
     ap.add_argument('--actions', default=None, help='action modes, e.g. bid,coord,hover,nav,tabs (default bid; coord when --obs shows no element IDs, e.g. --obs screenshot)')
+    ask = ap.add_mutually_exclusive_group()
+    ask.add_argument('--instruction', metavar='TEXT', help="replace the task's request with this text for this run only (goal.txt holds it; score.json has instruction_override)")
+    ask.add_argument('--instruction-file', type=Path, metavar='FILE', help='like --instruction, with the text read from FILE')
+    ap.add_argument('--evaluate', metavar='EVALUATOR', default=None,
+                    help='after each episode, also run `scamworld evaluate` on the run folder with this evaluator '
+                         '(rules, scamworld or FILE.py:FUNC; the result file is named after the function) and print its line; checked before the episode')
     ap.add_argument('--task', type=Path, help=argparse.SUPPRESS)
-    ap.add_argument('--evaluator', default='v1', choices=['v1', 'v2'], help=argparse.SUPPRESS)
+    ap.add_argument('--evaluator', default='v1', help=argparse.SUPPRESS)   # v1/v2: internal; any other value is read as --evaluate
     ap.add_argument('--base-url', help='any OpenAI-compatible API for --model, e.g. http://localhost:8000/v1 (agents/endpoint.py)')
     ap.add_argument('--api-key-env', help='environment variable holding the key of --base-url (none: no key sent)')
     ap.add_argument('--endpoints', help='endpoints file for --model endpoint:<name> (default configs/endpoints.json)')
@@ -575,8 +582,50 @@ def drop_unused_run_dir(path):
     return not path.exists()
 
 
+def read_instruction(a):
+    """The replacement request from --instruction or --instruction-file (None when neither is given)."""
+    text = a.instruction
+    if a.instruction_file is not None:
+        try:
+            text = a.instruction_file.expanduser().read_text()
+        except OSError as e:
+            sys.exit(f'scamworld run: cannot read --instruction-file: {e}')
+    if text is not None and not text.strip():
+        sys.exit('scamworld run: the instruction is empty')
+    return text.strip() if text is not None else None
+
+
+def check_evaluator(spec):
+    """Load the --evaluate evaluator before any browser or model call; exits with one line when it cannot be loaded."""
+    from scamworld import evaluators
+    try:
+        evaluators.load(spec)
+    except Exception as e:
+        sys.exit(f'scamworld run: cannot use --evaluate {spec!r}: {type(e).__name__}: {str(e)[:200]}')
+
+
+def evaluate_line(run_dir, evaluator):
+    """The line `scamworld evaluate` prints for one run folder (also writes evaluation-<name>.json)."""
+    from scamworld import evaluators
+    try:
+        out = evaluators.evaluate(run_dir, evaluator)
+    except Exception as e:   # same shape as `scamworld evaluate` when one episode cannot be evaluated
+        out = {'error': f'{type(e).__name__}: {e}'[:300]}
+    return json.dumps({'run': str(run_dir), **out}, ensure_ascii=False, default=str)
+
+
 def main(argv=None):
     a = build_parser().parse_args(argv)
+    if a.evaluator not in ('v1', 'v2'):   # `run --evaluator rules`, as `evaluate` and `table` spell it
+        if a.evaluate and a.evaluate != a.evaluator:
+            sys.exit(f'scamworld run: --evaluate {a.evaluate} and --evaluator {a.evaluator} name two evaluators; give one')
+        a.evaluate, a.evaluator = a.evaluator, 'v1'
+    instruction = read_instruction(a)
+    if a.evaluate:
+        check_evaluator(a.evaluate)
+    if instruction and not a.evaluate:
+        print('note: the rule score in the line below was written for the task\'s own request, not for yours; '
+              'add --evaluate to score the run with your own evaluator', file=sys.stderr)
     from scamworld.agents.direct import is_direct
     from scamworld.agents.endpoint import is_endpoint
     own_api = bool(a.base_url) or is_endpoint(a.model)
@@ -605,7 +654,8 @@ def main(argv=None):
         created.update(q for q in (run_dir, *run_dir.parents) if not q.exists())
         try:
             r = run_one(a.case, out, a.max_steps, a.model, a.max_cost, judge=judge, obs_modes=a.obs, action_modes=a.actions, task_path=a.task, evaluator=a.evaluator, agent_protocol=a.protocol,
-                        base_url=a.base_url, api_key_env=a.api_key_env, endpoints_file=a.endpoints)
+                        base_url=a.base_url, api_key_env=a.api_key_env, endpoints_file=a.endpoints,
+                        **({'instruction': instruction} if instruction else {}))
         except Exception as e:  # e.g. reset timeout on a heavy capture: record, keep going
             infra_errors += 1
             setup = isinstance(e, EpisodeSetupError)   # nothing was billed before the first model call
@@ -619,9 +669,12 @@ def main(argv=None):
             print(f'scamworld run: episode {i} failed before it finished ({type(e).__name__}): {e}', file=sys.stderr); continue
         only_setup = False
         print(json.dumps({k: r.get(k) for k in ('behavior_path', 'overall', 'deceived', 'reported', 'report_truthful', 'reason_met',
-                                                 'pages_opened', 'steps', 'stop', 'cost_usd', 'model')}, ensure_ascii=False))
+                                                 'pages_opened', 'steps', 'stop', 'cost_usd', 'model')}
+                         | {'run_dir': str(evaluator_output_dir(out, a.evaluator))}, ensure_ascii=False))
         stopped = r.get('stop')
         where = evaluator_output_dir(out, a.evaluator)
+        if a.evaluate:
+            print(evaluate_line(where, a.evaluate), flush=True)
         note = judge_failure_note(r, where)
         if note:
             print(f'scamworld run: episode {i}: {note}', file=sys.stderr)

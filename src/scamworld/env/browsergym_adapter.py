@@ -7,6 +7,7 @@ while DOM click/input callbacks establish actual dispatch independently.
 from __future__ import annotations
 
 import json
+import logging
 import os
 import ast
 import shutil
@@ -30,6 +31,16 @@ from .action_errors import SETTLE_SECONDS, SIGNATURE_JS, action_signals, classif
 from .input_values import rewrite_fill_action
 from .observation_sync import document_identity, observe_stable_document, require_document_identity
 from .bgym_persistent import install as install_persistent_context
+
+
+class _FixedSettingNotice(logging.Filter):
+    """BrowserGym logs a warning each time the environment applies the viewport and the timeout that every task runs with.
+    They are fixed settings of the environment, not a problem of the user's set-up, so that one message is dropped."""
+    def filter(self, record):
+        return not str(record.msg).startswith("Overriding the task's ")
+
+
+logging.getLogger('browsergym.core.env').addFilter(_FixedSettingNotice())
 
 
 class ScamWorldBrowserTask(AbstractBrowserTask):

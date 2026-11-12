@@ -1,22 +1,34 @@
 # ScamWorld skill
 
-`skills/scamworld/` is an [Agent Skill](https://github.com/agentskills/agentskills): a folder with a `SKILL.md` that a coding agent reads. It describes how to install ScamWorld (Docker or source), run a task, write tasks of your own, write an evaluator, connect your own agent or model API, and choose what the agent observes and does.
+`skills/scamworld/` is an [Agent Skill](https://github.com/agentskills/agentskills): a folder with a `SKILL.md` that a coding agent reads. It describes how to install ScamWorld (Docker or source), run a task and read the result, give a website your own request or a question, score runs with your own function, compare models and observation settings, see what the agent receives on a page, write tasks and websites of your own, and connect your own agent or model API.
+
+| file | content |
+|---|---|
+| `SKILL.md` | what can be changed and how, the three most common requests, the rules |
+| `references/install.md` | Docker, source, the full task set, a check without a model |
+| `references/recipes.md` | one recipe per request: first run, your own request, a question with your scoring, a comparison, what the agent sees, the warning signs, a task of your own, many tasks and models, your own agent, a new website |
+| `references/commands.md` | every command and option, the environment variables, the Python calls |
+| `references/evaluator.md` | writing a scoring function; what `episode` has |
+| `references/task-folder.md` | the files of a task, the page markup, `verify` |
+| `references/troubleshooting.md` | what a failure or an odd result usually means |
+
+[AGENTS.md](../AGENTS.md) at the top of the repository is the one-page map an agent finds in a clone; it sends the agent here.
 
 ## With any coding agent
 
 Open your agent in a clone of this repository and give it one sentence:
 
 ```text
-Read skills/scamworld/SKILL.md in this repository and follow it: install ScamWorld, make a task on the shop-11 website where the user first asks to read one page and then to buy, and check it.
+Read skills/scamworld/SKILL.md in this repository and follow it: run shop-11 on my model (<model id>, <base URL>) with a request where the user first asks to read the Delivery page and then to buy, and tell me what the agent did.
 ```
 
-Without a clone, give it the file's address:
+Without a clone, one sentence sets everything up, the skill included:
 
 ```text
-Read https://raw.githubusercontent.com/wuyoscar/scamworld-bench/main/skills/scamworld/SKILL.md and follow it to install ScamWorld with Docker and run shop-11 on my model (<model id>, <base URL>).
+Set up ScamWorld for me: https://raw.githubusercontent.com/wuyoscar/scamworld-bench/main/docs/install.md
 ```
 
-The agent needs a shell and, for the web address, a way to fetch it. Nothing has to be installed for this.
+[docs/install.md](../docs/install.md) is written for the agent: install, a check without a model, the copy of this skill into its skills folder, and what to report. The agent needs a shell and a way to fetch a web address.
 
 ## Install it as a skill
 

@@ -1733,7 +1733,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/45/06/f955dbbb1859e3bd2
 
 [[package]]
 name = "scamworld"
-version = "1.1.0"
+version = "1.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "agentlab" },

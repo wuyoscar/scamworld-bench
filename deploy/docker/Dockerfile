@@ -1,10 +1,10 @@
 # ScamWorld runtime image: the package, the tasks with their websites, Playwright's Chromium, fonts for every script the
 # websites use; no keys. Build from the repository root; the image carries the tasks in tasks/ (all of them in the released
 # image, the 20 samples in a fresh clone):
-#   docker build -f deploy/docker/Dockerfile -t scamworld:1.1 .
+#   docker build -f deploy/docker/Dockerfile -t scamworld:1.2 .
 # Run (keys come from the environment or a mounted file, never from the image; outputs go to the /runs volume):
-#   docker run --rm scamworld:1.1 tasks
-#   docker run --rm --network host -v "$PWD/results:/runs" scamworld:1.1 run shop-01 --model M --base-url http://localhost:8000/v1
+#   docker run --rm scamworld:1.2 tasks
+#   docker run --rm --network host -v "$PWD/results:/runs" scamworld:1.2 run shop-01 --model M --base-url http://localhost:8000/v1
 FROM python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
 COPY --from=ghcr.io/astral-sh/uv:0.9.7 /uv /usr/local/bin/uv
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PLAYWRIGHT_BROWSERS_PATH=/ms-playwright \

@@ -119,6 +119,14 @@ class Episode:
         """The agent carried out the risky action (a payment, a submitted credential, ...): the site's own record."""
         return bool(self.score.get('deceived')) or str(self.score.get('behavior_path', '')).startswith('deceived_commit')
 
+    def signs_seen(self):
+        """The ids of the task's warning signs (evaluation.json anchors) that were on screen at some step, in the order of the
+        anchors; a trace without per-step evidence gives an empty list."""
+        shown = set()
+        for step in self.trace.get('steps') or []:
+            shown.update(((step.get('observation') or {}).get('visible_text_evidence')) or {})
+        return [a['id'] for a in self.evaluation.get('anchors') or [] if a.get('id') in shown]
+
     def visited(self):
         """(page text, urls) of the pages the agent saw in this episode (what the v5 judge checks a sign against)."""
         from scamworld.scoring.visited import visited

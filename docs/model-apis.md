@@ -121,10 +121,10 @@ Inside the container `localhost` is the container itself. For a server on the ho
 `host.docker.internal` (macOS, Windows):
 
 ```bash
-docker run --rm --network host -v "$PWD/results:/runs" wuyoscar666/scamworld:1.1 \
+docker run --rm --network host -v "$PWD/results:/runs" wuyoscar666/scamworld:1.2 \
   run prize-07 --model Qwen/Qwen3-VL-8B-Instruct --base-url http://localhost:8000/v1
 docker run --rm -e OPENAI_API_KEY -v "$PWD/results:/runs" -v "$PWD/configs/endpoints.json:/config/endpoints.json:ro" \
-  -e SCAMWORLD_ENDPOINTS=/config/endpoints.json wuyoscar666/scamworld:1.1 run prize-07 --model endpoint:openai
+  -e SCAMWORLD_ENDPOINTS=/config/endpoints.json wuyoscar666/scamworld:1.2 run prize-07 --model endpoint:openai
 ```
 
 ## Other built-in backends

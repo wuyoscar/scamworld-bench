@@ -1,6 +1,6 @@
 # Task format
 
-ScamWorld v1.1 has 430 tasks on 416 websites: 377 tasks on 363 scam websites and 53 on legitimate control websites, in 16
+ScamWorld has 430 tasks on 416 websites: 377 tasks on 363 scam websites and 53 on legitimate control websites, in 16
 scenes (14 tasks are instruction variants of another task's website, see below). Each task is one folder under `tasks/`;
 `tasks/index.json` lists them. The agent only ever sees what the local server serves from `site/`, the request of
 `task.json`, and the user's saved details; everything else in the folder is hidden from it.

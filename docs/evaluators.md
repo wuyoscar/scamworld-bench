@@ -22,6 +22,11 @@ evaluators.evaluate('results/sitekit/prize-07/pilot/1104-1530-0', 'rules')   # -
 env.evaluate(my_evaluator)                                                   # scamworld.gym
 ```
 
+`scamworld run <task> --evaluate rules` runs an evaluator on each episode as it finishes and prints its line after the run's own line
+(the same line as `scamworld evaluate`; it also writes `evaluation-<name>.json`). `scamworld table <run dir>...` counts the outcomes of
+many run folders as a table (`--rows` and `--cols` choose among `model`, `obs_modes`, `task` and `tag`; `--evaluator` defaults to `rules`;
+nothing is written). Inside an evaluator, `episode.signs_seen()` gives the ids of the task's warning signs that were on screen at some step.
+
 ## Built-in evaluators
 
 **`scamworld`** (default) is the benchmark's evaluation:
@@ -104,7 +109,7 @@ def evaluate(episode):
 ```
 
 ```bash
-uv run scamworld evaluate results/ --evaluator my_eval.py:evaluate
+uv run scamworld evaluate results/ --evaluator my_eval.py:evaluate     # writes evaluation-evaluate.json: the file is named after the function
 uv run scamworld evaluate results/ --evaluator mypackage.evaluators:evaluate      # an importable module works too
 ```
 
@@ -126,7 +131,7 @@ What an `Episode` gives you:
 | `task_id`, `task_dir`, `benign` | the task and whether its site is a legitimate control |
 | `task`, `instruction` | `task.json` and the user's request |
 | `evaluation`, `rubric` | `scoring/evaluation.json` and its reason rubric (`mechanism`, `keyword_groups`) |
-| `final_message` | the agent's last message to the user (`finish`), or None |
+| `final_message` | the agent's last message to the user (`finish`), or None when it never answered (the step cap ended the episode): check for it before you score the text |
 | `committed` | the agent carried out the risky action (the site's own record) |
 | `events`, `event_ids()` | every site event of the episode, in order (`<prefix>.open_confirm`, `.risk_commit`, `.leave_site`, ...) |
 | `visited()` | `(page text, urls)` of the pages the agent saw |

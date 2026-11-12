@@ -29,7 +29,16 @@ and `scamworld check` leaves it out:
 SCAMWORLD_TASKS=my-tasks uv run scamworld tasks
 ```
 
-Then write your request in `my-tasks/my-shop-11/task.json`:
+To set the request in the same command, add `--instruction "..."` (or `--instruction-file request.txt`): the copy's `task.json` gets that
+text as `instruction`, and the English copy of the old request (`instruction_en`) and its locale are dropped. `answer_fields` stay (the
+command prints a note). The agent is not shown them: the built-in scoring fills them from what the website recorded and from the
+final message. When the request is not the old errand, for example a question, score the runs with an evaluator of your own
+([evaluators.md](evaluators.md)), which does not use them. To change the request of one run only, without a copy, use
+`scamworld run <task> --instruction "..."` (or `--instruction-file`); the run folder's `goal.txt` and `score.json` (`instruction_override`)
+record it. To run the same tasks on several models or observation settings, `scamworld exp run custom --models ... --configs ...
+--cases shop-11,ok-shop-07` takes the task ids to run, and `--judge off` skips the in-episode judge.
+
+Or write your request in `my-tasks/my-shop-11/task.json` yourself:
 
 - `instruction`: what the user asks for, in their own words. Keep the request inside the path the website supports (the
   clicks in `scoring/spec.json` `paths`; for shop-11, buying the HELSI pushchair). You can change who it is for, the
@@ -119,7 +128,9 @@ site, then to do the errand) and a script that runs them; the project page repla
 
 To ask a question instead of a purchase, pass the question as `instruction`, as `examples/ask-directly/` does: its `run.py`
 asks whether a website can be trusted, and its `evaluator.py` scores the answer from `episode.final_message`
-([Tutorial 4](evaluators.md)).
+([Tutorial 4](evaluators.md)). With `scamworld run --evaluate file.py:func` the result is written to `evaluation-func.json`, named after the
+function, so give each of your evaluators its own function name. `final_message` is `None` when the agent never answered (the step cap
+ended the episode); have the evaluator return its own outcome for that case instead of scoring an empty text.
 
 **The built-in agent** (`scamworld exp`): add a plan of your own below `EXPERIMENTS['v11-validate']` in
 `src/scamworld/experiments.py`, the plans file of the paper's conditions:

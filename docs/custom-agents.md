@@ -61,8 +61,12 @@ control, as made by `scamworld new-task` (docs/custom-tasks.md):
 ```bash
 uv run python examples/agents/scripted_agent.py examples/tasks/parcel-fee-01          # no model
 OPENAI_BASE_URL=http://localhost:8000/v1 OPENAI_MODEL=Qwen/Qwen3-VL-8B-Instruct \
-  uv run python examples/agents/openai_compatible_agent.py examples/tasks/parcel-fee-01   # ~70-line LLM agent
+  uv run python examples/agents/openai_compatible_agent.py examples/tasks/parcel-fee-01   # a complete LLM agent
 ```
+
+The LLM agent also reads `OPENAI_MAX_TOKENS` (reply limit, default 4096), `OPENAI_TIMEOUT` (seconds per model call, default 120) and
+`OPENAI_EXTRA_BODY` (JSON merged into the request, e.g. to switch a model's thinking off). A reply cut off before any answer is an error
+that says so; a timeout or HTTP 5xx is tried once more.
 
 To loop over many tasks:
 
@@ -72,6 +76,10 @@ for t in index()['tasks']:
     if t['scene'] == 'shop':
         print(t['task'], run_episode(t['task'], MyAgent(), evaluator='rules')['outcome'])
 ```
+
+To see what an agent would be given on a page without running one, `scamworld observe <task> --obs ax_tree --click 197 --grep fee` opens the
+task, clicks the element ids you name, and prints the size of every observation key and the lines that match (`--out DIR` saves the
+fields and the screenshot). `--obs` takes the same settings as `scamworld run --obs` and can be repeated to compare them.
 
 ## Observations and actions
 

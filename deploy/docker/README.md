@@ -4,12 +4,12 @@ The released image carries the package, all 430 tasks with their websites, Playw
 websites need (Noto core, CJK and emoji). Keys are never in the image.
 
 ```bash
-docker pull wuyoscar666/scamworld:1.1
-docker run --rm wuyoscar666/scamworld:1.1 tasks                         # list the tasks
-docker run --rm wuyoscar666/scamworld:1.1 verify prize-07               # scripted browser probes of one task
-docker run --rm --network host -v "$PWD/results:/runs" wuyoscar666/scamworld:1.1 \
+docker pull wuyoscar666/scamworld:1.2
+docker run --rm wuyoscar666/scamworld:1.2 tasks                         # list the tasks
+docker run --rm wuyoscar666/scamworld:1.2 verify prize-07               # scripted browser probes of one task
+docker run --rm --network host -v "$PWD/results:/runs" wuyoscar666/scamworld:1.2 \
   run prize-07 --model Qwen/Qwen3-VL-8B-Instruct --base-url http://localhost:8000/v1
-docker run --rm -v "$PWD/results:/runs" wuyoscar666/scamworld:1.1 evaluate /runs/sitekit/prize-07 --evaluator rules
+docker run --rm -v "$PWD/results:/runs" wuyoscar666/scamworld:1.2 evaluate /runs/sitekit/prize-07 --evaluator rules
 ```
 
 - `/runs` is the output volume (`results/` inside the container). Mount it to keep the run folders.
@@ -24,18 +24,26 @@ docker run --rm -v "$PWD/results:/runs" wuyoscar666/scamworld:1.1 evaluate /runs
   write your request in its `task.json` on your machine, then give the folder's path to `verify` and `run`
   (`--user` makes the copy yours instead of root's on Linux):
   ```bash
-  docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/my-tasks:/my-tasks" wuyoscar666/scamworld:1.1 \
+  docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/my-tasks:/my-tasks" wuyoscar666/scamworld:1.2 \
     new-task /my-tasks/my-shop-11 --from shop-11
-  docker run --rm -v "$PWD/my-tasks:/my-tasks" wuyoscar666/scamworld:1.1 verify /my-tasks/my-shop-11
+  docker run --rm -v "$PWD/my-tasks:/my-tasks" wuyoscar666/scamworld:1.2 verify /my-tasks/my-shop-11
   ```
   With `-e SCAMWORLD_TASKS=/my-tasks`, `tasks`, `run` and `exp` take the ids of that folder instead of the image's
   tasks (then copy with `--from /scamworld/tasks/shop-11`).
-- Your own agent or evaluator in Python: run it in the image,
-  `docker run --rm -v $PWD:/work -v "$PWD/results:/runs" -w /work --entrypoint python wuyoscar666/scamworld:1.1 my_agent.py`
+- Your own request or evaluator: mount the folder that holds the file and name it by its path there,
+  ```bash
+  docker run --rm --network host -v "$PWD:/work" -v "$PWD/results:/runs" wuyoscar666/scamworld:1.2 \
+    run shop-11 --model M --base-url http://localhost:8000/v1 \
+    --instruction-file /work/request.txt --evaluate /work/my_eval.py:evaluate
+  docker run --rm -v "$PWD:/work" -v "$PWD/results:/runs" wuyoscar666/scamworld:1.2 table /runs --evaluator /work/my_eval.py:evaluate
+  ```
+  `observe`, `signs` and `table` need no model: `docker run --rm wuyoscar666/scamworld:1.2 observe shop-11 --obs ax_tree --grep returns`.
+- Your own agent in Python: run it in the image,
+  `docker run --rm -v $PWD:/work -v "$PWD/results:/runs" -w /work --entrypoint python wuyoscar666/scamworld:1.2 my_agent.py`
   (runs are written under `/scamworld/results`, which is the `/runs` volume).
 - The websites as files:
   ```bash
-  docker create --name sw wuyoscar666/scamworld:1.1
+  docker create --name sw wuyoscar666/scamworld:1.2
   docker cp sw:/scamworld/tasks/. ./tasks && docker cp sw:/scamworld/release/. ./release && docker rm sw
   ```
   (the trailing `/.` copies the contents into `./tasks` and `./release`, new folders or those of a checkout; without it
@@ -45,6 +53,6 @@ docker run --rm -v "$PWD/results:/runs" wuyoscar666/scamworld:1.1 evaluate /runs
 Build it yourself from a checkout (the image then carries the tasks in `tasks/`):
 
 ```bash
-docker build -f deploy/docker/Dockerfile -t scamworld:1.1 .
-docker buildx build --platform linux/amd64,linux/arm64 -f deploy/docker/Dockerfile -t scamworld:1.1 .
+docker build -f deploy/docker/Dockerfile -t scamworld:1.2 .
+docker buildx build --platform linux/amd64,linux/arm64 -f deploy/docker/Dockerfile -t scamworld:1.2 .
 ```

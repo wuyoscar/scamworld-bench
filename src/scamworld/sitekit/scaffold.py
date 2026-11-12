@@ -205,7 +205,7 @@ def new_task(folder, benign=False, brand='ParcelPoint', url=None, force=False):
     return folder
 
 
-def copy_task(folder, source, force=False):
+def copy_task(folder, source, force=False, instruction=None):
     """A copy of a task (a released one, or any task folder) as a task of your own, under a new id (the folder name);
     returns its path. The website and the scoring files stay as they are; you change the request (docs/custom-tasks.md).
 
@@ -213,7 +213,13 @@ def copy_task(folder, source, force=False):
     time). The new id replaces case_id in task.json, scoring/evaluation.json and source/provenance.json; scoring/spec.json
     keeps the event prefix of the copied flow.js. task.json gets `variant_of`, the id of the task whose site the copy
     reuses, so that the agent gets that task's user, saved details and reference code, which the copied pages show
-    (scoring/evaluation/regions.py). <parent>/index.json lists the copy with "released": false."""
+    (scoring/evaluation/regions.py). <parent>/index.json lists the copy with "released": false.
+
+    instruction replaces the request in task.json. The English copy of the old request (instruction_en) and its locale
+    (instruction_locale) described the old text, so they are dropped; answer_fields stay (they label the options of the
+    report an errand ends with, and the scorer reads them)."""
+    if instruction is not None and not str(instruction).strip():
+        raise ValueError('the instruction is empty')
     from scamworld.corpus import resolve_task, spec_at
     name, src = resolve_task(source)
     if not (src / 'task.json').is_file():
@@ -237,6 +243,8 @@ def copy_task(folder, source, force=False):
     slug = str(task.get('task_id') or '')
     slug = slug[len(old) + 1:] if slug.startswith(old + '.') else slug
     _rewrite(folder / 'task.json', case_id=tid, task_id=f'{tid}.{slug}' if slug else tid, variant_of=task.get('variant_of') or old)
+    if instruction is not None:
+        _replace_instruction(folder / 'task.json', str(instruction).strip())
     _rewrite(folder / 'scoring/evaluation.json', case_id=tid)
     if (folder / 'source/provenance.json').is_file():
         _rewrite(folder / 'source/provenance.json', case_id=tid)
@@ -246,6 +254,16 @@ def copy_task(folder, source, force=False):
     _index(folder.parent, tid, row.get('benign', spec.get('benign')), task_id=f'{tid}.{slug}' if slug else tid,
            scene=row.get('scene') or 'custom', variant_of=task.get('variant_of') or old)
     return folder
+
+
+def _replace_instruction(path, text):
+    """Put text in task.json as `instruction`; instruction_en and instruction_locale described the old text and go."""
+    doc = json.loads(path.read_text(encoding='utf-8'))
+    doc['instruction'] = text
+    doc.pop('instruction_en', None)
+    doc.pop('instruction_locale', None)
+    indent = re.search(r'\n( +)"', path.read_text(encoding='utf-8'))
+    path.write_text(json.dumps(doc, indent=len(indent.group(1)) if indent else 1, ensure_ascii=False) + '\n', encoding='utf-8')
 
 
 def _rewrite(path, **values):

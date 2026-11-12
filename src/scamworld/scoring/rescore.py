@@ -27,7 +27,7 @@ RUNNER_FIELDS = {   # written by scamworld.episode.run_one around the scorer res
     'stop', 'cost_usd', 'cost_known', 'budget_state', 'known_cost_usd', 'agent_cost_usd', 'judge_cost_usd', 'model',
     'obs_modes', 'action_modes', 'coord_space', 'close_error', 'agent_protocol', 'effective_action_modes', 'evaluator',
     'projection_truncation', 'input_hashes', 'runtime_config', 'judge_config', 'task_version', 'rubric_hash',
-    'freeze_input_hash', 'max_steps', 'max_calls', 'max_cost_usd', 'reply_format', 'dead_link_loop', 'system_note', 'interface_variant', 'tokens', 'task_overlay',
+    'freeze_input_hash', 'max_steps', 'max_calls', 'max_cost_usd', 'reply_format', 'dead_link_loop', 'system_note', 'interface_variant', 'tokens', 'task_overlay', 'instruction_override',
     # r8 runner fields (episode.run_one)
     'agent_max_tokens', 'code', 'interface', 'reasoning_profile', 'url_visibility', 'offsite', 'format_fallbacks',
     # direct provider API runs (agents/direct.py)
@@ -134,7 +134,7 @@ def rescore(run_dir, judge='cached', evaluator=None, reparse=False):
         llm = LLMJudge(env_file=OPENWEIGHTS_ENV_FILE, prompt='v4')
     result = resolve_evaluator(evaluator or recorded.get('evaluator') or 'v1')(contract, trace, spec, llm)
     result = {k: v for k, v in result.items() if k != 'shared_evaluation'}
-    kept = ('tokens', 'max_steps', 'task_overlay') + (() if decision else ('judge_v5',))   # judge_v5 judged the unanswered episode
+    kept = ('tokens', 'max_steps', 'task_overlay', 'instruction_override') + (() if decision else ('judge_v5',))   # judge_v5 judged the unanswered episode
     for key in kept:   # recorded around the scorer: a re-score keeps them
         if key in recorded:
             result[key] = copy.deepcopy(recorded[key])

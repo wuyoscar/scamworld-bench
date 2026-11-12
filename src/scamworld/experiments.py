@@ -348,7 +348,8 @@ def complete_smoke(folder, case_id, freeze_hash, *, record=False):
     return True
 
 
-def jobs(name, task_context=None, evaluator='v1'):
+def jobs(name, task_context=None, evaluator='v1', only=None):
+    """Pending jobs of plan `name`. only: task ids to keep (a list); an id the plan does not run raises ValueError."""
     if evaluator not in ('v1', 'v2'):
         raise ValueError('Unknown evaluator: ' + str(evaluator))
     if name == 'freeze-smoke' and evaluator != 'v1':
@@ -386,6 +387,12 @@ def jobs(name, task_context=None, evaluator='v1'):
         raise ValueError(f'{name}: its tasks are not in this checkout (missing {shown(absent[0])}): download the full task '
                          f'set (the Hugging Face dataset) or use the Docker image')
     cases = e.get('cases') or corpus(); todo = []
+    if only is not None:
+        unknown = [c for c in only if c not in cases]
+        if unknown:
+            raise ValueError(f"--cases: {', '.join(unknown)} {'is' if len(unknown) == 1 else 'are'} not "
+                             f"{'a task' if len(unknown) == 1 else 'tasks'} of {name} ({len(cases)} tasks; see `scamworld tasks`)")
+        cases = [c for c in cases if c in only]
     freeze_hash = freeze_smoke_seal() if name == 'freeze-smoke' else None
     if task_context:
         if e.get('instances'): raise ValueError('External tasks cannot use an unreviewed template-instance override')
@@ -500,6 +507,27 @@ print(json.dumps({**{k: r.get(k) for k in ('behavior_path', 'overall', 'stop', '
                   **{k: r[k] for k in ('infra_stage', 'error') if r.get(k)}}))
 '''
 
+# Names that `scamworld run --obs` uses, accepted by --configs next to the CONFIGS names. Combinations are joined with '+'.
+CONFIG_ALIASES = {'ax_tree': 'axtree', 'screenshot+ax_controls': 'default',
+                  'screenshot+som+ax_controls+ax_tree+html': 'all'}
+
+def resolve_configs(text):
+    """Config names for a --configs value: CONFIGS names or CONFIG_ALIASES, in order, without repeats. Raises ValueError
+    naming the first one that is neither."""
+    out = []
+    for c in (x.strip() for x in text.split(',') if x.strip()):
+        name = c if c in CONFIGS else CONFIG_ALIASES.get(c)
+        if name is None:
+            raise ValueError(f"unknown observation condition '{c}'. Valid: {', '.join(list(CONFIGS) + list(CONFIG_ALIASES))}")
+        if name not in out: out.append(name)
+    return out
+
+class JoinComma(argparse.Action):
+    """An option that may be repeated: the values are joined with commas."""
+    def __call__(self, parser, namespace, values, option_string=None):
+        old = getattr(namespace, self.dest, '')
+        setattr(namespace, self.dest, f'{old},{values}' if old else values)
+
 def build_parser():
     ap = argparse.ArgumentParser(prog='scamworld exp', description='Plan or run a resumable experiment over the tasks (finished episodes are skipped).')
     ap.add_argument('cmd', choices=['plan', 'run'], help='plan: list the pending jobs and the cost estimate; run: run them')
@@ -517,7 +545,15 @@ def build_parser():
                          'before a job starts')
     ap.add_argument('--configs', default='',
                     help='custom only: comma-separated observation conditions, one or more of ' + ', '.join(CONFIGS)
+                         + '; the spellings of `scamworld run --obs` also work: ' + ', '.join(CONFIG_ALIASES)
                          + ' (default: default)')
+    ap.add_argument('--cases', default='', metavar='ID[,ID...]', action=JoinComma,
+                    help='run only these task ids (any experiment); an id the experiment does not run is refused; may be repeated')
+    ap.add_argument('--judge', choices=['off'], default=None,
+                    help='off: no in-episode reason judge and no judge key needed (the judge can run later with `scamworld judge --runs`); '
+                         'default: the experiment\'s own setting (custom: on)')
+    ap.add_argument('--runs', type=int, metavar='N', help='custom only: episodes per task, model and condition (default 1)')
+    ap.add_argument('--max-steps', type=int, metavar='N', help='custom only: step limit per episode (default %d)' % STEP_CAP)
     ap.add_argument('--task', type=Path, help=argparse.SUPPRESS)
     ap.add_argument('--evaluator', default='v1', choices=['v1', 'v2'], help=argparse.SUPPRESS)
     return ap
@@ -538,10 +574,16 @@ def _main(a):
         sys.exit(f"unknown experiment '{a.exp}'. Valid names: " + ', '.join(sorted(EXPERIMENTS)))
     if a.exp == 'custom':
         if not a.models: sys.exit('custom needs --models')
-        for c in (a.configs.split(',') if a.configs else []):
-            if c not in CONFIGS:
-                sys.exit(f"unknown observation condition '{c}'. Valid: {', '.join(CONFIGS)}")
-        EXPERIMENTS['custom'].update(models=a.models.split(','), **({'configs': a.configs.split(',')} if a.configs else {}))
+        configs = resolve_configs(a.configs)
+        EXPERIMENTS['custom'].update(models=a.models.split(','), **({'configs': configs} if configs else {}))
+        if a.runs is not None:
+            if a.runs < 1: sys.exit('--runs must be at least 1')
+            EXPERIMENTS['custom']['runs'] = a.runs
+        if a.max_steps is not None:
+            if a.max_steps < 1: sys.exit('--max-steps must be at least 1')
+            EXPERIMENTS['custom']['max_steps'] = a.max_steps
+    elif a.runs is not None or a.max_steps is not None:
+        sys.exit('--runs and --max-steps are for custom only')
     task_context = None
     if a.task:
         a.task = a.task.resolve()
@@ -549,14 +591,21 @@ def _main(a):
         case_id = json.loads(a.task.read_text())['case_id']
         contract = load_contract(CASES / case_id, task_path=a.task)
         task_context = {'case_id': case_id, 'task_hash': contract['layer_context']['task_hash']}
-    todo = jobs(a.exp, task_context=task_context, evaluator=a.evaluator)
+    only = [c for c in a.cases.split(',') if c.strip()] if a.cases else None
+    todo = jobs(a.exp, task_context=task_context, evaluator=a.evaluator, only=only)
     if a.models: todo = [j for j in todo if j[1] in a.models.split(',')]
     est = sum(est_usd(m) for _, m, *_ in todo)
-    problems = preflight({j[1] for j in todo}, EXPERIMENTS[a.exp].get('judge') != 'off') if todo else []
+    judge_on = a.judge != 'off' and EXPERIMENTS[a.exp].get('judge') != 'off'
+    problems = preflight({j[1] for j in todo}, judge_on) if todo else []
     if a.cmd == 'run' and problems:
         for line in problems: print(line, file=sys.stderr)
         sys.exit(2)   # nothing is dispatched
-    print(f'{a.exp}: {len(todo)} pending jobs, est ${est:.2f}', flush=True)
+    unpriced = sorted({m for _, m, *_ in todo if not m.startswith('cz/') and m not in EST}) if a.exp == 'custom' else []
+    print(f'{a.exp}: {len(todo)} pending jobs, est ${est:.2f}'
+          + (f' (counted at $0.05 an episode; no price known for {", ".join(unpriced)})' if unpriced else ''), flush=True)
+    if a.exp == 'custom' and a.cmd == 'plan':
+        for cid, m, c, k, *_ in todo[:40]: print(f'  {m}  {c}  {cid}  run {k}')
+        if len(todo) > 40: print(f'  ... and {len(todo) - 40} more')
     if a.cmd != 'run':
         for line in problems: print('note: ' + line, file=sys.stderr)
         return
@@ -602,6 +651,7 @@ def _main(a):
         cs = coord_space(m) if 'coord' in act else None
         options = {'coord_space': cs if cs in ('pixel', 'norm1000') else 'pixel', 'evaluator': a.evaluator}
         options.update({k: EXPERIMENTS[a.exp][k] for k in EXPERIMENT_OPTIONS if EXPERIMENTS[a.exp].get(k)})
+        if a.judge == 'off': options['judge'] = 'off'
         if a.task: options['task_path'] = str(a.task)
         if instr:
             d.mkdir(parents=True, exist_ok=True); (d / 'instruction.txt').write_text(instr); options['instruction_path'] = str(d / 'instruction.txt')

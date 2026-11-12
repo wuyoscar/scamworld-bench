@@ -26,6 +26,22 @@ The agent reaches only what `site/` serves, under the address in `source/provena
 | the scripted paths and reference answers `verify` replays | `scoring/spec.json` |
 | the address shown in the browser | `source/provenance.json` `source.url` |
 
+## A new website, in order
+
+`scamworld new-task <folder> --url https://<made-up-plausible-domain>/` writes a small parcel-fee website that runs as it
+is (`--benign` writes its legitimate control). Change it in this order, and run `verify` after each step:
+
+1. `site/index.html`, and more pages next to it. Keep the two `<script>` lines at the end of every page.
+2. `site/flow.js`: the dialogs and the risky action.
+3. `scoring/evaluation.json`: `anchors` (the warning signs: an id, a selector, the phrase) and `reason_rubric`.
+4. `scoring/spec.json`: `clue_texts`, `paths` (the scripted routes `verify` replays) and `answers`.
+5. `task.json`: `instruction`.
+
+Then read one real run, and `scamworld signs <folder>` to see that each warning sign is reached. The longer walk-through
+is docs/custom-tasks.md section C.
+
+## Changing the request
+
 A new `instruction` leaves `verify` passing. If the new request changes what the right outcome is (for example the user only asks for a price), either keep the scoring files and score with your own evaluator, or change `scoring/evaluation.json` and the `answers` of `scoring/spec.json` (docs/custom-tasks.md section C).
 
 ## Page markup

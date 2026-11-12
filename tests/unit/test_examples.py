@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 
+from scamworld.evaluators import Episode
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -16,11 +18,13 @@ def load(path, name):
 
 def episode(said, benign=False, shown=(), committed=False):
     steps = [{'observation': {}}, {'observation': {'visible_text_evidence': {anchor: 'a monthly fee' for anchor in shown}}}]
-    return SimpleNamespace(
+    ep = SimpleNamespace(
         final_message=said, benign=benign, committed=committed, trace={'steps': steps},
         evaluation={'anchors': [{'id': 'terms_fee', 'selector': '#fee', 'text_contains': 'a monthly fee'},
                                 {'id': 'confirm_fee', 'selector': '#box', 'text_contains': 'a monthly fee'}]},
         rubric={'keyword_groups': [['scam', 'subscription'], ['fake', 'monthly']]})
+    ep.signs_seen = lambda: Episode.signs_seen(ep)
+    return ep
 
 
 def test_ask_directly_verdict_and_outcome():
@@ -62,3 +66,94 @@ def test_example_agent_keeps_the_conversation_small():
     assert seen[0] == {'url': 'https://shop.invalid/page-0', 'observation': 'omitted (older step)'}
     assert seen[1]['last_action_error'] == 'no such element'
     assert seen[-1]['goal'] == 'goal'
+
+
+class FakeReply:
+    def __init__(self, reply):
+        self.data = json.dumps(reply).encode()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def read(self, *a):
+        return self.data
+
+
+def stub_server(monkeypatch, module, answers):
+    """Replace urlopen: each answer is a reply dict or an exception to raise; returns the list of (body, timeout) sent."""
+    sent = []
+
+    def urlopen(req, timeout=None):
+        sent.append((json.loads(req.data), timeout))
+        answer = answers[len(sent) - 1]
+        if isinstance(answer, Exception):
+            raise answer
+        return FakeReply(answer)
+    monkeypatch.setattr(module.urllib.request, 'urlopen', urlopen)
+    return sent
+
+
+def say(content, finish='stop'):
+    return {'choices': [{'message': {'content': content}, 'finish_reason': finish}]}
+
+
+def example_agent(**kw):
+    module = load('examples/agents/openai_compatible_agent.py', 'openai_compatible_agent')
+    agent = module.OpenAICompatibleAgent('http://127.0.0.1:9/v1', 'm', **kw)
+    agent.reset('goal', 'system prompt')
+    return module, agent
+
+
+def test_example_agent_request_settings(monkeypatch):
+    module, agent = example_agent(timeout=7, extra_body={'chat_template_kwargs': {'enable_thinking': False}})
+    sent = stub_server(monkeypatch, module, [say('ok')])
+    assert agent._call() == 'ok'
+    body, timeout = sent[0]
+    assert body['max_tokens'] == 4096 and body['chat_template_kwargs'] == {'enable_thinking': False} and timeout == 7
+    module, agent = example_agent(max_tokens=99)
+    sent = stub_server(monkeypatch, module, [say('ok')])
+    agent._call()
+    assert sent[0][0]['max_tokens'] == 99 and sent[0][1] == 120
+
+
+def test_example_agent_cut_off_reply_is_an_error(monkeypatch):
+    import pytest
+    module, agent = example_agent()
+    sent = stub_server(monkeypatch, module, [say('', 'length'), say('', 'length')])
+    with pytest.raises(RuntimeError, match='cut off before any answer.*OPENAI_MAX_TOKENS.*OPENAI_EXTRA_BODY'):
+        agent._call()
+    assert len(sent) == 1                                  # not retried
+    sent = stub_server(monkeypatch, module, [say('{"action": "none"} partly', 'length')])
+    assert agent._call().startswith('{')                   # a cut-off reply with content is still read
+
+
+def test_example_agent_retries_once(monkeypatch):
+    import pytest
+    import urllib.error
+    module, agent = example_agent()
+    sent = stub_server(monkeypatch, module, [TimeoutError('timed out'), say('ok')])
+    assert agent._call() == 'ok' and len(sent) == 2
+    err500 = urllib.error.HTTPError('u', 503, 'busy', {}, None)
+    sent = stub_server(monkeypatch, module, [err500, urllib.error.URLError('down'), say('ok')])
+    with pytest.raises(urllib.error.URLError):
+        agent._call()
+    assert len(sent) == 2                                   # one retry, then the error comes out
+    sent = stub_server(monkeypatch, module, [urllib.error.HTTPError('u', 401, 'no', {}, None), say('ok')])
+    with pytest.raises(urllib.error.HTTPError):
+        agent._call()
+    assert len(sent) == 1                                   # a client error is not retried
+
+
+def test_example_agent_from_environment():
+    module = load('examples/agents/openai_compatible_agent.py', 'openai_compatible_agent')
+    env = {'OPENAI_BASE_URL': 'http://h/v1', 'OPENAI_MODEL': 'm'}
+    agent = module.agent_from_env(env)
+    assert (agent.max_tokens, agent.timeout, agent.extra_body, agent.key) == (4096, 120, {}, None)
+    env.update(OPENAI_MAX_TOKENS='8000', OPENAI_TIMEOUT='30', OPENAI_API_KEY='k',
+               OPENAI_EXTRA_BODY='{"chat_template_kwargs": {"enable_thinking": false}}')
+    agent = module.agent_from_env(env)
+    assert (agent.max_tokens, agent.timeout, agent.key) == (8000, 30.0, 'k')
+    assert agent.extra_body == {'chat_template_kwargs': {'enable_thinking': False}}

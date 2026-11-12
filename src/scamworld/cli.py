@@ -2,7 +2,7 @@
 
     scamworld tasks [--scene S] [--benign | --scam]       list the tasks (SCAMWORLD_TASKS: another task folder)
     scamworld new-task <folder> [--benign]                a runnable task of your own from the template (docs/custom-tasks.md)
-    scamworld new-task <folder> --from <task>             a copy of a task (e.g. a released one) to change into your own
+    scamworld new-task <folder> --from <task> [--instruction T]    a copy of a task (e.g. a released one) to change into your own
     scamworld serve <task>                                serve a task's website on 127.0.0.1 (preview, no agent)
     scamworld run <task> [--model M] [--runs N] ...       one agent episode (python -m scamworld.episode --help)
     scamworld evaluate <run dir>... [--evaluator E]       outcome of finished episodes (docs/evaluators.md)
@@ -12,6 +12,9 @@
     scamworld judge <task> <reason text> [--run DIR]      classify one stop reason (judge v5; --prompt v4 for the old judge)
     scamworld judge --runs <run dir>... [--write]         judge v5 over finished episodes -> score.json `judge_v5`
     scamworld check                                       task files against release/path-map.json
+    scamworld observe <task> [--obs M]... [--click BID]... [--grep T]   what the agent would see on a page, no model
+    scamworld signs <task>                                the task's warning signs and where scripted paths show them
+    scamworld table <run dir>... [--rows R] [--cols C]    outcome counts of finished episodes as a table
 
 <task> is a task id under tasks/ or the path of a task folder (one holding task.json).
 """
@@ -54,19 +57,47 @@ def _use_folder(task):
     return name
 
 
+def answer_fields_note(folder):
+    """One line when the copied task still has the answer_fields of its old request (task.json), else ''."""
+    from pathlib import Path
+    try:
+        fields = json.loads((Path(folder) / 'task.json').read_text(encoding='utf-8')).get('answer_fields') or []
+    except (OSError, ValueError):
+        return ''
+    questions = [f.get('question') for f in fields if isinstance(f, dict) and f.get('question')]
+    if not questions:
+        return ''
+    return (f'  note:         answer_fields in task.json are still those of the copied request ("{questions[0][:90]}"). The agent is '
+            f'not shown them: the built-in scoring fills them from what the website recorded and from the final message, and an '
+            f'evaluator of your own does not use them\n')
+
+
 def cmd_new_task(a):
     from scamworld.sitekit.scaffold import copy_task, new_task
+    if (a.instruction or a.instruction_file) and not a.source:
+        sys.exit('--instruction and --instruction-file go with --from: they replace the request of the copied task')
+    instruction = a.instruction
+    if a.instruction_file:
+        try:
+            instruction = open(a.instruction_file, encoding='utf-8').read()
+        except OSError as e:
+            sys.exit(f'cannot read --instruction-file: {e}')
+    if instruction is not None and not instruction.strip():
+        sys.exit('the instruction is empty')
     if a.source and (a.benign or a.url):
         sys.exit('--from copies a task with its own website: --benign and --url apply to the template only')
     try:
         if a.source:
-            folder = copy_task(a.folder, a.source, force=a.force)
+            folder = copy_task(a.folder, a.source, force=a.force, instruction=instruction)
         else:
             folder = new_task(a.folder, benign=a.benign, url=a.url, force=a.force)
     except (FileExistsError, ValueError, OSError) as e:
         sys.exit(str(e))
     request = f'  your request: {folder / "task.json"} (instruction, context.persona, context.profile)\n' if a.source else ''
-    print(f'wrote {folder}\n{request}  look at it:   scamworld serve {a.folder}\n  check it:     scamworld verify {a.folder}\n'
+    if instruction is not None:
+        request = f'  your request: {folder / "task.json"} instruction set from {"--instruction-file" if a.instruction_file else "--instruction"}\n'
+    note = answer_fields_note(folder) if instruction is not None else ''
+    print(f'wrote {folder}\n{request}{note}  look at it:   scamworld serve {a.folder}\n  check it:     scamworld verify {a.folder}\n'
           f'  run an agent: scamworld run {a.folder} --model <id> --base-url <OpenAI-compatible URL>')
 
 
@@ -341,6 +372,10 @@ def build_parser():
     s.add_argument('--from', dest='source', metavar='TASK',
                    help='copy this task (an id under tasks/ or a task folder) instead of the template: its website and scoring '
                         'stay, the copy gets the new id and an index row of your own (docs/custom-tasks.md)')
+    g = s.add_mutually_exclusive_group()
+    g.add_argument('--instruction', metavar='TEXT', help='with --from: the request of the copy, in place of the copied one (a purchase, a question, ...). '
+                   'instruction_en and instruction_locale of the copied task are dropped; answer_fields stay (the agent is not shown them; the built-in scoring fills them from the website\'s record and the final message)')
+    g.add_argument('--instruction-file', metavar='FILE', help='with --from: read the request of the copy from FILE (UTF-8 text)')
     s.add_argument('--force', action='store_true', help='write into a folder that already has files, overwriting the template or copied files')
     s.set_defaults(fn=cmd_new_task)
     s = sub.add_parser('serve', help="serve a task's website on 127.0.0.1 (no agent)")
@@ -380,6 +415,8 @@ def build_parser():
     s.set_defaults(fn=cmd_judge)
     s = sub.add_parser('check', help='check the task files against the release manifest')
     s.set_defaults(fn=cmd_check)
+    from scamworld.inspect_cmds import register
+    register(sub)
     return p
 
 

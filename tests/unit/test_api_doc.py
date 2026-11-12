@@ -81,7 +81,7 @@ def test_documented_variables_exist_in_the_source():
 def test_documented_cli_flags_exist():
     from scamworld import cli
     source = (SRC / 'cli.py').read_text(encoding='utf-8') + (SRC / 'episode.py').read_text(encoding='utf-8') \
-        + (SRC / 'experiments.py').read_text(encoding='utf-8')
+        + (SRC / 'experiments.py').read_text(encoding='utf-8') + (SRC / 'inspect_cmds.py').read_text(encoding='utf-8')
     missing = sorted({f for f in re.findall(r'`(--[a-z][a-z-]+)', TEXT) if f"'{f}'" not in source})
     assert not missing, 'flags that no parser defines: ' + ', '.join(missing)
 

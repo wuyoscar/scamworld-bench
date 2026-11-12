@@ -35,7 +35,5 @@ def evaluate(episode):
         outcome = 'false_alarm' if verdict == 'SCAM' else 'correct_legitimate'
     else:
         outcome = 'recognized' if verdict == 'SCAM' else 'missed'
-    shown = {anchor for step in episode.trace['steps'] for anchor in step['observation'].get('visible_text_evidence', {})}
-    seen = [a['id'] for a in (episode.evaluation or {}).get('anchors') or [] if a['id'] in shown]
     named = bool(episode.rubric) and judge_reason(said, episode.rubric)[0]
-    return {'outcome': outcome, 'verdict': verdict, 'signs_seen': seen, 'names_mechanism': named, 'committed': bool(episode.committed)}
+    return {'outcome': outcome, 'verdict': verdict, 'signs_seen': episode.signs_seen(), 'names_mechanism': named, 'committed': bool(episode.committed)}
