@@ -214,7 +214,8 @@ def _visible_now(env):
     """(ids of the anchors on screen after the last step, page address), read from the last observation record.
     (Exporting the whole trace instead copies every earlier observation each time and slows a long walk down.)"""
     record = env.env.task.runtime.observations[-1]
-    ids = [e['evidence_id'] for e in record.get('visible_evidence') or []] + [a['id'] for a in record.get('private_anchor_regions') or []]
+    ids = ([e['evidence_id'] for e in record.get('visible_evidence') or []] + [a['id'] for a in record.get('private_anchor_regions') or []]
+           + list(record.get('signs_on_screen') or []))
     return list(dict.fromkeys(ids)), record.get('url')
 
 
@@ -223,34 +224,24 @@ def _page_key(env):
     return record.get('url'), (record.get('state') or {}).get('state_id')
 
 
-WHY_RANK = ('text', 'hidden', 'off screen', 'covered', 'other')   # how far an element on the page is from counting; later is closer
-# The checks of the scorer's anchor test (env/environment.py PRIVATE_ANCHORS_JS): innerText with the phrase (case matters, so CSS
-# upper-casing counts), painted, fully inside the viewport, and the element is what sits at five points of it.
-WHY_JS = """([selector, phrase]) => { try {
-  const squash = s => s.normalize('NFKC').replace(/\\s+/g, '');
-  const els = Array.from(document.querySelectorAll(selector));
-  if (!els.length) return 'missing';
-  let best = 'text';
-  const rank = ['text', 'hidden', 'off screen', 'covered', 'other'];
-  const up = w => { if (rank.indexOf(w) > rank.indexOf(best)) best = w; };
-  for (const el of els) {
-    const text = (el.innerText || '').replace(/\\s+/g, ' ').trim();
-    if (!text || (phrase && !(text.includes(phrase) || (squash(phrase) && squash(text).includes(squash(phrase)))))) continue;
-    const r = el.getBoundingClientRect();
-    let painted = true;
-    for (let p = el; p; p = p.parentElement) { const s = getComputedStyle(p); if (s.display === 'none' || s.visibility === 'hidden' || Number(s.opacity) === 0) painted = false; }
-    if (!painted || !(r.width > 0 && r.height > 0)) { up('hidden'); continue; }
-    if (!(r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight)) { up('off screen'); continue; }
-    const hit = [[.5, .5], [.05, .05], [.95, .05], [.05, .95], [.95, .95]].every(([x, y]) => {
-      const h = document.elementFromPoint(r.x + r.width * x, r.y + r.height * y); return h && (h === el || el.contains(h) || h.contains(el)); });
-    up(hit ? 'other' : 'covered');
-  }
-  return best; } catch (e) { return 'missing'; } }"""
-WHY_TEXT = {'text': 'its text, as shown (capital letters included), does not contain the phrase',
-            'hidden': 'it is hidden or has no size', 'off screen': 'it is never fully inside the window',
-            'covered': 'another element covers it',
-            'other': "it looks fully on screen, yet the scorer did not count it; check the anchor's states and that its text is part of the visible text"}
+def _sign_states(env):
+    """{anchor id: {'status'[, 'dy']}} on the page as it is now: where each sign's phrase is (env/environment.py SIGN_STATE_JS);
+    {} when the page cannot be read at this moment (it is loading another address)."""
+    runtime = env.env.task.runtime
+    try:
+        return {s['id']: s for s in runtime.sign_states((runtime.observations[-1].get('state') or {}).get('state_id'))}
+    except Exception:
+        return {}
+
+
+WHY_RANK = ('text', 'hidden', 'off screen', 'covered', 'other')   # how far a sign on the page is from counting; later is closer
+WHY_TEXT = {'text': 'the text of its element does not contain the phrase',
+            'hidden': 'the part with the phrase is hidden, cut off by its container, or has no size',
+            'off screen': 'the part with the phrase is never fully inside the window',
+            'covered': 'the part with the phrase is covered by something painted over it',
+            'other': 'its phrase came on screen only after the observation was taken (the page was still changing)'}
 SCROLL_STEP, SCROLL_MAX = 700, 8   # pixels per scroll and number of scrolls after each path step
+CENTRE_MIN = 40                    # a phrase this close to the middle of the window is not scrolled to
 WALK_SECONDS = 180                 # time limit of the whole walk of `scamworld signs`
 
 
@@ -286,10 +277,9 @@ def _paths_to_walk(paths):
 def walk_signs(task, anchors, seconds=WALK_SECONDS):
     """Walk the task's scripted paths in the browser and note for each anchor id where it was first on screen
     ({'path', 'step', 'action', 'url', 'scrolled'}; step 0 is the start page; each step is also looked at while scrolling down
-    the page) and, separately, where its element was closest to counting without being on screen as the scorer needs it (the
-    same dict plus 'why': one of WHY_TEXT). The walk stops after `seconds`.
+    the page, and a phrase that stays partly outside the window is scrolled to the middle once) and, separately, where a sign
+    that never came on screen was closest to it (the same dict plus 'why': one of WHY_TEXT). The walk stops after `seconds`.
     Returns (on screen, on the page only, problems), each a dict by anchor id except the list of problems."""
-    from scamworld.corpus.neutral_names import to_served
     shown, present, problems = {}, {}, []
     deadline = time.monotonic() + seconds
     out_of_time = lambda: time.monotonic() > deadline
@@ -304,15 +294,31 @@ def walk_signs(task, anchors, seconds=WALK_SECONDS):
         if key not in scanned:
             scanned.add(key)
             _scroll_through(env, lambda: note(path, number, action, True), out_of_time)
+            for a in anchors:   # a phrase that none of those positions had fully inside the window: scroll it to the middle once
+                if out_of_time() or env.done:
+                    break
+                state = {} if a['id'] in shown else _sign_states(env).get(a['id']) or {}
+                if state.get('status') != 'off screen' or abs(state.get('dy') or 0) < CENTRE_MIN:
+                    continue
+                before = env.env.page.evaluate('window.scrollY')
+                if env.step({'action': 'scroll', 'dy': int(state['dy'])})[4].get('rejected'):
+                    continue
+                note(path, number, action, True)
+                moved = env.env.page.evaluate('window.scrollY') - before
+                if moved and not env.done:
+                    env.step({'action': 'scroll', 'dy': -moved})
 
     def note(path, number, action, scrolled=False):
         ids, url = _visible_now(env)
         where = {'path': path, 'step': number, 'action': action, 'url': url, 'scrolled': scrolled}
+        states = None
         for a in anchors:
             if a['id'] in ids:
                 shown.setdefault(a['id'], where)
             elif a.get('selector'):
-                why = env.env.page.evaluate(WHY_JS, [to_served(a['selector']), a.get('text_contains')])
+                states = _sign_states(env) if states is None else states
+                status = (states.get(a['id']) or {}).get('status')
+                why = 'other' if status == 'on screen' else status
                 if why in WHY_RANK and (a['id'] not in present or WHY_RANK.index(why) > WHY_RANK.index(present[a['id']]['why'])):
                     present[a['id']] = {**where, 'why': why}
 

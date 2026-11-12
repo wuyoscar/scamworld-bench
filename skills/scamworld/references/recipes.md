@@ -142,9 +142,12 @@ shop-11: 5 warning signs (hidden scoring information, for whoever writes the tas
 
 It lists the task's warning signs and walks the task's scripted paths in a browser to say where each one is first on
 screen: the page, the path and the step (use them with `observe --path`). It takes about half a minute and stops after
-three. A sign that is on a page but is not counted as seen is listed as `on the page, but not counted`, with the
-reason: its text as shown differs from the phrase (capital letters included), it is hidden, off screen or covered. `episode.signs_seen()` in an evaluator returns only the counted ones, so
-build a scoring function on signs that `signs` shows as counted.
+three minutes. A sign counts as on screen when the text of its own element that is inside the window contains the phrase; the
+same phrase elsewhere on the page does not count it, and neither does a box that is not open. A sign that is on a page
+but never on screen is listed as `on the page, but not counted`, with the reason: the text of its element does not
+contain the phrase, or the part with the phrase is hidden or cut off by its container, never fully inside the window, or
+covered by something painted over it.
+`episode.signs_seen()` in an evaluator returns the signs that were on screen in that episode.
 
 To see whether a sign reaches an agent under a given setting, go to its step and look for the phrase:
 `scamworld observe <task> --path <path>:<step> --obs ax_tree --grep "<phrase>"`. A match means the text is in what a

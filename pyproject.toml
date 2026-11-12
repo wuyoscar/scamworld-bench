@@ -1,6 +1,6 @@
 [project]
 name = "scamworld"
-version = "1.2.0"
+version = "1.2.1"
 description = "Interactive environment for evaluating web agents against online fraud: 430 tasks on rebuilt scam and legitimate websites"
 readme = "README.md"
 requires-python = "==3.12.*"

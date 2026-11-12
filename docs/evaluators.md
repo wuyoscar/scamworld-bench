@@ -137,9 +137,10 @@ What an `Episode` gives you:
 | `visited()` | `(page text, urls)` of the pages the agent saw |
 | `trace`, `choices`, `score` | the raw `trace.json`, `choices.json` and `score.json` |
 
-`trace['steps'][i]['observation']` also says which evidence anchors (`scoring/evaluation.json` `anchors`) were visible to
-the agent at each step (`visible_text_evidence`), so an evaluator can require that the agent saw the warning sign before it
-stopped, or measure how many steps it took.
+`trace['steps'][i]['signs_on_screen']` lists the warning signs (`scoring/evaluation.json` `anchors`, by id) that were on the agent's
+screen at that step, so an evaluator can require that the agent saw the warning sign
+before it stopped, or measure how many steps it took. `signs_seen()` gives the signs of all steps, in the order of the anchors (it also reads
+`visible_text_evidence`, which is all that an episode recorded before 1.2.1 has, see [api.md](api.md)).
 
 Two complete examples are in `examples/evaluators/`: `strict_clue.py` (no model: Detected only if the message names one of
 the task's clue texts that was on a visited page) and `llm_rubric.py` (a judge class on your own endpoint).

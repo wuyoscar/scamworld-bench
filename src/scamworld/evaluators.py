@@ -121,10 +121,14 @@ class Episode:
 
     def signs_seen(self):
         """The ids of the task's warning signs (evaluation.json anchors) that were on screen at some step, in the order of the
-        anchors; a trace without per-step evidence gives an empty list."""
+        anchors; a trace without per-step evidence gives an empty list. A sign is on screen at a step when the text of its
+        element that is inside the window contains its phrase (`signs_on_screen` of the step, recorded since 1.2.1), or when
+        the older record has it (`visible_text_evidence` of the step's observation, all that an episode recorded before
+        1.2.1 has: it leaves out a sign whose element is a table, a list or a box of several lines)."""
         shown = set()
         for step in self.trace.get('steps') or []:
-            shown.update(((step.get('observation') or {}).get('visible_text_evidence')) or {})
+            shown.update((step.get('observation') or {}).get('visible_text_evidence') or {})
+            shown.update(step.get('signs_on_screen') or [])
         return [a['id'] for a in self.evaluation.get('anchors') or [] if a.get('id') in shown]
 
     def visited(self):
