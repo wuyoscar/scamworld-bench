@@ -29,7 +29,7 @@ captured text was translated.
   address, cards) are fictional. Scam websites keep the contact details the scammers published on the original pages, as
   part of the reconstructed fraud; some placeholder contacts were replaced with fictional ones. Legitimate control
   websites keep the organisations' public contact addresses; personal addresses were removed. Do not contact any address
-  in the dataset or send it money. The sites send nothing anywhere, and forms, payments and downloads raise local events
+  on these websites or send it money. The sites send nothing anywhere, and forms, payments and downloads raise local events
   only; the agent's prompt carries the task profile to the model API you run.
 - **The legitimate control websites** are reconstructions as well, used to measure over-refusal; they are not the
   organisations' real sites.

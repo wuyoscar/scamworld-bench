@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2611.04879"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2611.04879-b31b1b?style=flat-square&logo=arxiv&logoColor=white"></a>
   <a href="https://wuyoscar.github.io/scamworld-bench/"><img alt="Project page" src="https://img.shields.io/badge/Project_page-Explore-B15F50?style=flat-square&logo=googlechrome&logoColor=white"></a>
-  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld"><img alt="Hugging Face tasks" src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset-430_tasks-FFD21E?style=flat-square"></a>
+  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld"><img alt="Hugging Face tasks" src="https://img.shields.io/badge/%F0%9F%A4%97_Task_files-430_tasks-FFD21E?style=flat-square"></a>
   <a href="https://hub.docker.com/r/wuyoscar666/scamworld"><img alt="Docker" src="https://img.shields.io/badge/Docker-scamworld%3A1.1-2496ED?style=flat-square&logo=docker&logoColor=white"></a>
   <a href="DISCLAIMER.md"><img alt="Licence: code Apache-2.0, data CC BY-NC 4.0" src="https://img.shields.io/badge/License-Apache--2.0_%2F_CC_BY--NC_4.0-55AC8B?style=flat-square"></a>
 </p>
@@ -20,7 +20,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2611.04879">📄 Paper</a> &nbsp;·&nbsp;
   <a href="https://wuyoscar.github.io/scamworld-bench/">🌐 Project page</a> &nbsp;·&nbsp;
-  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld">🤗 Dataset</a> &nbsp;·&nbsp;
+  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld">🤗 Task files</a> &nbsp;·&nbsp;
   <a href="#quick-start">🐳 Quick start</a> &nbsp;·&nbsp;
   <a href="#citation">📝 Citation</a>
 </p>
@@ -476,7 +476,7 @@ Like every plan except `v11-validate`, `custom` uses the a11 layout and the Engl
   OpenRouter key and is billed there). `smoke` (8 models on `account-25`) and `obs-smoke` (Gemma, 2 observation conditions on
   `ok-job-04`, `ok-travel-04`, `shop-64` and `shop-65`) run 8 episodes each on tasks that are not among the 20 samples,
   so a plain clone stops them with "its tasks are not in this checkout (missing ...)", naming the missing file;
-  download the full task set (the Hugging Face dataset) or use the Docker image.
+  download the full task set from Hugging Face or use the Docker image.
 - Model ids that start with `cz/` need a model gateway that is not public. They are in `main-cz`, `v11-validate`,
   `ablation-reminder`, `ablation-fake` and every `r8-*` plan except `r8-main-paid` and `r8-obs`; for the `r8-*` plans and
   `ablation-reminder`, `--models` can keep only their OpenRouter models.
@@ -487,7 +487,7 @@ Like every plan except `v11-validate`, `custom` uses the a11 layout and the Engl
   `r8-asked-nourl`; the paper's explicit assessment, where the agent is asked directly whether the site is a scam) is
   among them: its task files are not shipped, so this release cannot produce the asked outcomes.
 
-## Labels in the data
+## Labels on the tasks
 
 The fraud families a scam website uses (14 families in all) are in the `fraud_families` column of the
 Hugging Face table (`data/tasks.parquet`; columns `start_page`, `task`, `scenario`, `language`, `legitimate_site`,
@@ -558,7 +558,7 @@ and organisations named. The elements are listed per task in `scoring/spec.json`
 tasks (the signed-in user and the saved details: names, e-mail, phone, address, cards) are fictional. Scam websites
 keep the contact details the scammers published on the original pages, as part of the reconstructed fraud; some
 placeholder contacts were replaced with fictional ones. Legitimate control websites keep the organisations' public
-contact addresses; personal addresses were removed. Do not contact anyone listed in the dataset or send them money. The
+contact addresses; personal addresses were removed. Do not contact anyone named on these websites or send them money. The
 sites never send anything anywhere (the agent's prompt carries the task profile to the model API you run). Use the
 websites for research only: **do not deploy them publicly or use them for phishing**. The runtime serves every site on
 127.0.0.1 and blocks all other hosts unless `SCAMWORLD_OFFSITE=allowlist` is set. Code: Apache-2.0
