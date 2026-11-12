@@ -36,21 +36,38 @@
 </p>
 
 <p align="center">
-  <a href="https://wuyoscar.github.io/scamworld-bench/"><img src="assets/site.gif" width="100%" alt="The ScamWorld project page: every task's start page on a turning globe, then an episode replayed step by step, with the agent's cursor, its reasoning and the warning signs circled on the page"></a>
+  <a href="https://wuyoscar.github.io/scamworld-bench/"><img src="assets/site-hero.webp" width="100%" alt="The ScamWorld project page: the start page of every task on a turning globe"></a>
   <br>
   <sub>The <a href="https://wuyoscar.github.io/scamworld-bench/">project page</a>: all the task websites on one globe, and recorded episodes replayed step by step.</sub>
 </p>
 
-**ScamWorld** is an interactive environment for evaluating web agents against online fraud. It rebuilds 363 reported scam websites as local sites that run in a standard browser, together with 53 legitimate websites as controls. The websites span 16 fraud scenarios, 38 fraud mechanisms (in 14 families) and 26 languages (Simplified and Traditional Chinese counted separately). An agent observes screenshots, HTML or the accessibility tree, and acts through clicks, typing, scrolling and navigation.
+**ScamWorld** is an interactive environment for evaluating web agents against online fraud. A task is a website, an ordinary user request, and a record of the risky action on that website. The agent works in a real browser: it observes screenshots, HTML or the accessibility tree, and acts through clicks, typing, scrolling and navigation. The website itself records what the agent did.
 
-The environment comes with:
+The environment ships with 430 ready-made tasks on 363 reported scam websites rebuilt as local sites and 53 legitimate websites as controls, across 16 fraud scenarios, 38 fraud mechanisms (in 14 families) and 26 languages (Simplified and Traditional Chinese counted separately). These tasks are a starting point, not a boundary. The tools that made them are in this repository, so you can put your own request on a released website, add a website of your own, and bring your own agent, model and evaluation.
 
-- **430 tasks.** One per website (363 scam, 53 legitimate) plus 14 variants of scam websites with a different request (377 scam tasks in all). Each task is an ordinary user request; the agent is never told that the site may be a scam.
-- **A gym-style interface** for your own agent, and a built-in agent that runs on any OpenAI-compatible model API.
-- **Replaceable evaluators.** The outcome comes from what the agent did on the site, not from what it says.
-- **Tools for tasks of your own**: copy a released task, write a new request, check it and run it.
+| you want to | read | runnable example |
+|---|---|---|
+| run an agent on the released tasks | [Quick start](#quick-start) | `docker run ... wuyoscar666/scamworld:1.1 run shop-01 --model M --base-url URL` |
+| write tasks of your own (your request on a released website, one change to every task, or your own website and risky action) | [docs/custom-tasks.md](docs/custom-tasks.md) | `scamworld new-task my-tasks/my-shop-11 --from shop-11` |
+| give a released website a longer or different request | [docs/custom-tasks.md](docs/custom-tasks.md) | [examples/long-requests/](examples/long-requests/) |
+| plug in your own agent (gym-style `reset` / `step`) | [docs/custom-agents.md](docs/custom-agents.md) | [examples/agents/](examples/agents/) |
+| run the built-in agent on your own model API (vLLM, Ollama, LiteLLM, OpenAI, OpenRouter, ...) | [docs/model-apis.md](docs/model-apis.md) | `scamworld run <task> --model M --base-url URL` |
+| define your own evaluation | [docs/evaluators.md](docs/evaluators.md) | [examples/evaluators/](examples/evaluators/) |
+| deploy it (one image with the browser, the fonts and all 430 tasks; your own tasks mounted in) | [deploy/docker/README.md](deploy/docker/README.md) | `docker pull wuyoscar666/scamworld:1.1` |
 
-**Browse it.** The [project page](https://wuyoscar.github.io/scamworld-bench/) shows the websites, what an agent sees under each observation mode, and episodes replayed step by step. All 430 tasks with their websites are on Hugging Face as [oscarwu/ScamWorld](https://huggingface.co/datasets/oscarwu/ScamWorld).
+**What makes it usable as an evaluation environment.**
+
+- **Local and repeatable.** Every website is served from local files inside the browser and runs offline by default, so an episode sees the same pages every time. `scamworld check` compares every task file with the release manifest.
+- **The website keeps the record.** A payment, a submitted password or an approved wallet permission is a site event, so the outcome comes from what the agent did, not from what it says.
+- **Every task can be checked without a model.** `scamworld verify <task>` clicks through a task's paths with scripted probes and checks that each one is scored as intended. It works on your own tasks too.
+- **The request matches the page.** What a request says is saved or signed in is on the page when the agent gets there, and nothing on a page or in its source tells the agent that it is being tested.
+- **Played before release.** Every task was run end to end by two different agents and the episodes were reviewed; the site defects they exposed were fixed. What remains is listed under [Known limitations](#known-limitations).
+
+**Browse it.** The [project page](https://wuyoscar.github.io/scamworld-bench/) shows the websites, what an agent sees under each observation mode, and episodes replayed step by step. Some of the replays use longer requests of our own on released websites ([examples/long-requests/](examples/long-requests/)). All 430 tasks with their websites are on Hugging Face as [oscarwu/ScamWorld](https://huggingface.co/datasets/oscarwu/ScamWorld).
+
+<p align="center">
+  <a href="https://wuyoscar.github.io/scamworld-bench/#replays"><img src="assets/site-replay.webp" width="100%" alt="An episode replayed on the project page: the agent's cursor moves over the website, its reasoning is shown beside it, and the warning signs on the page are circled"></a>
+</p>
 
 ## Overview
 
@@ -181,15 +198,6 @@ uv run scamworld run my-tasks/my-shop-11 --model M --base-url URL
 added to each request, the site's address hidden, a different request (for example a question) for every task) and how to
 build a new website from a template. The commands above assume a source checkout ([Quick start](#quick-start), From source); with
 Docker, see [deploy/docker/README.md](deploy/docker/README.md).
-
-## Use it for your own work
-
-| you want to | read | runnable example |
-|---|---|---|
-| write tasks of your own (a released website with your request, or your own website and risky action) | [docs/custom-tasks.md](docs/custom-tasks.md) | `scamworld new-task my-tasks/my-shop-11 --from shop-11` |
-| plug in your own agent (gym-style `reset` / `step`) | [docs/custom-agents.md](docs/custom-agents.md) | [examples/agents/](examples/agents/) |
-| run the built-in agent on your own model API (vLLM, Ollama, LiteLLM, OpenAI, OpenRouter, ...) | [docs/model-apis.md](docs/model-apis.md) | `scamworld run <task> --model M --base-url URL` |
-| define your own evaluation | [docs/evaluators.md](docs/evaluators.md) | [examples/evaluators/](examples/evaluators/) |
 
 Reference: [API reference](docs/api.md), [task format](docs/task-format.md), [observations and actions](docs/custom-agents.md#observations-and-actions),
 [Docker image](deploy/docker/README.md).

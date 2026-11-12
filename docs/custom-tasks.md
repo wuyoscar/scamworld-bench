@@ -114,6 +114,9 @@ for row in index()['tasks']:
 `instruction` replaces the request of that episode only; the website, the user's saved details and the scoring stay the
 task's. Each run folder keeps the request the agent got in `goal.txt`.
 
+`examples/long-requests/` has 24 such requests on released websites (the user first asks the agent to look around the
+site, then to do the errand) and a script that runs them; the project page replays episodes recorded with them.
+
 To ask a question instead of a purchase, pass `run_episode(..., instruction='Is this site a scam?')` and score the runs with
 your own evaluator that reads `episode.final_message` ([Tutorial 4](evaluators.md)).
 
