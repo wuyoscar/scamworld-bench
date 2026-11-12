@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2611.04879"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2611.04879-b31b1b?style=flat-square&logo=arxiv&logoColor=white"></a>
   <a href="https://wuyoscar.github.io/scamworld-bench/"><img alt="Project page" src="https://img.shields.io/badge/Project_page-Explore-B15F50?style=flat-square&logo=googlechrome&logoColor=white"></a>
-  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld"><img alt="Hugging Face tasks" src="https://img.shields.io/badge/%F0%9F%A4%97_Task_files-430_tasks-FFD21E?style=flat-square"></a>
+  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld"><img alt="The benchmark on Hugging Face: 430 tasks" src="https://img.shields.io/badge/%F0%9F%A4%97_Benchmark-430_tasks-FFD21E?style=flat-square"></a>
   <a href="https://hub.docker.com/r/wuyoscar666/scamworld"><img alt="Docker" src="https://img.shields.io/badge/Docker-scamworld%3A1.1-2496ED?style=flat-square&logo=docker&logoColor=white"></a>
   <a href="DISCLAIMER.md"><img alt="Licence: code Apache-2.0, data CC BY-NC 4.0" src="https://img.shields.io/badge/License-Apache--2.0_%2F_CC_BY--NC_4.0-55AC8B?style=flat-square"></a>
 </p>
@@ -20,7 +20,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2611.04879">📄 Paper</a> &nbsp;·&nbsp;
   <a href="https://wuyoscar.github.io/scamworld-bench/">🌐 Project page</a> &nbsp;·&nbsp;
-  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld">🤗 Task files</a> &nbsp;·&nbsp;
+  <a href="https://huggingface.co/datasets/oscarwu/ScamWorld">🤗 Benchmark</a> &nbsp;·&nbsp;
   <a href="#quick-start">🐳 Quick start</a> &nbsp;·&nbsp;
   <a href="#citation">📝 Citation</a>
 </p>
